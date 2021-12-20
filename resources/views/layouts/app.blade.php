@@ -1,36 +1,86 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@yield('title')</title>
+    <link rel="shortcut icon" href="{{ asset('img/guru.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+</head>
+<body>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    @include('layouts.navigation')
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <!-- body-content -->
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <div class="body-content">
+        <div class="container pt-5">
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+            <!-- container-body -->
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+            <div class="container-body">
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                @yield('content')
+
+            </div>
+
         </div>
-    </body>
+    </div>
+    
+    
+    <!-- icons -->
+
+    <!--
+        <div>
+                <div class="d-inline-block">
+                    <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #eef7ff; background-color: #0a66c2; height: 20px; width: 20px;">
+                        <i class="fas fa-thumbs-up fa-xs"></i>
+                    </span>
+                </div>
+                <div class="d-inline-block">
+                    <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #cbf0d1; background-color: #0ac25d; height: 20px; width: 20px;">
+                        <i class="fas fa-hands-wash fa-xs"></i>
+                    </span>
+                </div>
+                <div class="d-inline-block">
+                    <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #e8d1f1; background-color: #785085; height: 20px; width: 20px;">
+                        <i class="fas fa-hand-holding-heart fa-xs"></i>
+                    </span>
+                </div>
+                <div class="d-inline-block">
+                    <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #f3d3d3; background-color: #c73838; height: 20px; width: 20px;">
+                        <i class="fas fa-heart fa-xs"></i>
+                    </span>
+                </div>
+                <div class="d-inline-block">
+                    <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #fffec2; background-color: #e4ca39; height: 20px; width: 20px;">
+                        <i class="fas fa-lightbulb fa-xs"></i>
+                    </span>
+                </div>
+                <div class="d-inline-block">
+                    <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #e8d1f1; background-color: #785085; height: 20px; width: 20px;">
+                        <i class="far fa-frown-open fa-xs"></i>
+                    </span>
+                </div>
+            </div>
+    -->
+    
+    <!-- js -->
+    <!-- <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script> -->
+
+    <!-- Jquery JS--> 
+    <script src="{{ asset('vendor/jquery-3.2.1.min.js') }}"></script>    
+
+    <!-- Bootstrap JS-->
+    <script src="{{ asset('vendor/bootstrap-4.1/popper.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+    
+
+    @yield('script')
+    
+</body>
 </html>

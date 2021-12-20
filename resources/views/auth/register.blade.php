@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <img src="https://1000logos.net/wp-content/uploads/2017/03/Linkedin-Logo.png" width="300px" alt="">
+                <img src="{{ asset('img/guru.png') }}" width="300px" alt="">
             </a>
         </x-slot>
 

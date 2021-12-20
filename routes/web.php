@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/feed', [UserController::class, 'feed'])->name('user.feed');
+
+Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 
 require __DIR__.'/auth.php';
