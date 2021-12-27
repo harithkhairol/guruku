@@ -72,7 +72,6 @@
                                         <span>
                                             <b>{{ Auth::user()->name }}</b> <br>
                                         </span>
-                                        <p>Bubo Creative Studio Intern Frontend Developer</p>
                                     </div>
                                 </div>
                             </div>

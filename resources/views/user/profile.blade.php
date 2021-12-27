@@ -36,14 +36,6 @@
                         <div class="second-colon-body">
                             <div class="viewing d-flex">
                                 <p class="viewing-text">
-                                    Profile
-                                </p>
-                                <a class="viewing-link ml-auto" href="#">
-                                    963
-                                </a>
-                            </div>
-                            <div class="viewing d-flex">
-                                <p class="viewing-text">
                                     Connection
                                 </p>
                                 <a class="viewing-link ml-auto" href="#">

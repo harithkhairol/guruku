@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -27,7 +28,17 @@ class UserController extends Controller
 
     public function feed()
     {
-        return view('user.feed');
+
+        $posts = Post::orderByDesc('created_at')->get();
+
+        if(isset($_GET['post'])){
+
+            return redirect()->action([UserController::class, 'feed'])->with('success','You have created a post successfully!');
+
+        }
+
+        return view('user.feed', compact('posts'));
+        
     }
 
     /**

@@ -23,6 +23,8 @@
 
             <div class="container-body">
 
+                @include('layouts.alert')
+
                 @yield('content')
 
             </div>

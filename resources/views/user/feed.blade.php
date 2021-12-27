@@ -35,14 +35,6 @@
                         <div class="second-colon-body">
                             <div class="viewing d-flex">
                                 <p class="viewing-text">
-                                    Profile
-                                </p>
-                                <a class="viewing-link ml-auto" href="#">
-                                    963
-                                </a>
-                            </div>
-                            <div class="viewing d-flex">
-                                <p class="viewing-text">
                                     Connection
                                 </p>
                                 <a class="viewing-link ml-auto" href="#">
@@ -72,57 +64,6 @@
                 
             </div>
 
-
-            <div class="card first-colon-bottom rounded-top my-3 mx-lg-2 d-none d-md-block">
-                <div class="bottom-body">
-                    <div class="latest mb-2">
-                        <p>
-                            Latest
-                        </p>
-                    </div>
-                    <div class="activity mb-3">
-                        <i class="fab fa-simplybuilt mr-2"></i>
-                        <span>
-                            DİKSİYON VE BEDEN DİLİ
-                        </span>
-                    </div>
-                    <div class="bottom-link mb-2">
-                        <a href="#">
-                            Groups
-                        </a>
-                        <div class="mt-2 d-flex"> 
-                            <a href="#">
-                                Events
-                            </a>
-                            <i class="fas fa-plus ml-auto mr-4"></i>
-                        </div>
-                    </div>
-                    <div class="activity">
-                        <i class="fab fa-simplybuilt mr-2"></i>
-                        <span>
-                            DİKSİYON VE BEDEN DİLİ
-                        </span>
-                    </div>
-                    <div class="see-all mt-2 mb-3">
-                        <span>
-                            Tümünü gör
-                        </span>
-                    </div>
-                    
-                    <a href="#" style="padding-left: 15px;">
-                        Followed Hashtags
-                    </a>
-                </div>
-
-                <div class="very d-flex justify-content-center">
-                    <p style="font-size: 14px; margin-bottom: 0; padding: 13px;">
-                        Discover More
-                    </p>
-                </div>
-
-            </div>
-
-
             <!-- acordion -->
 
             <div class="acordion d-block d-md-none mt-2">
@@ -138,14 +79,6 @@
                     <div>
                         <div class="card mb-2">
                             <div class="second-colon-body">
-                                <div class="viewing d-flex">
-                                    <p class="viewing-text">
-                                        Profile
-                                    </p>
-                                    <a class="viewing-link ml-auto" href="#">
-                                        963
-                                    </a>
-                                </div>
                                 <div class="viewing d-flex">
                                     <p class="viewing-text">
                                         Connection
@@ -174,55 +107,6 @@
                             </div>
                         </div>
 
-                        <div class="card first-colon-bottom rounded-top my-3 mx-lg-2">
-                            <div class="bottom-body">
-                                <div class="latest mb-2">
-                                    <p>
-                                        Latest
-                                    </p>
-                                </div>
-                                <div class="activity mb-3">
-                                    <i class="fab fa-simplybuilt mr-2"></i>
-                                    <span>
-                                        DİKSİYON VE BEDEN DİLİ
-                                    </span>
-                                </div>
-                                <div class="bottom-link mb-2">
-                                    <a href="#">
-                                        Groups
-                                    </a>
-                                    <div class="mt-2 d-flex"> 
-                                        <a href="#">
-                                            Events
-                                        </a>
-                                        <i class="fas fa-plus ml-auto mr-4"></i>
-                                    </div>
-                                </div>
-                                <div class="activity">
-                                    <i class="fab fa-simplybuilt mr-2"></i>
-                                    <span>
-                                        DİKSİYON VE BEDEN DİLİ
-                                    </span>
-                                </div>
-                                <div class="see-all mt-2 mb-3">
-                                    <span>
-                                        Tümünü gör
-                                    </span>
-                                </div>
-                                
-                                <a href="#" style="padding-left: 15px;">
-                                    Followed Hashtags
-                                </a>
-                            </div>
-
-                            <div class="very d-flex justify-content-center">
-                                <p style="font-size: 14px; margin-bottom: 0; padding: 13px;">
-                                    Discover More
-                                </p>
-                            </div>
-
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -239,32 +123,20 @@
                             <img src="{{ asset('img/user2.png') }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
                         </div>
                         <div class="col-10 pl-0" >
-                            <button type="button" class="second-bar-top-button">Start a post</button>
+                            <button type="button" class="second-bar-top-button" data-toggle="modal" data-target="#aboutPost">Start a post</button>
                         </div>
                     </div>
                     <div class="row ml-md-2 mr-md-2 text-center">
-                        <div class="col-md-3 col-6 py-1">
+                        <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postPicture">
                             <div class="second-bar-top-foot px-sm-1">
                                 <i class="fas fa-image fa-lg mr-2" style="color: #3883ce;"></i>
-                                <span style="font-size: .9rem; color: rgb(133, 133, 133);">Fotoğraf</span>
+                                <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Photo</span>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6 py-1">
+                        <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postVideo">
                             <div class="second-bar-top-foot px-sm-1">
                                 <i class="fab fa-youtube fa-lg mr-2" style="color: rgb(107, 175, 107);"></i>
-                                <span style="font-size: .9rem; color: rgb(133, 133, 133);">Videolar</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6 py-1">
-                            <div class="second-bar-top-foot px-sm-1">
-                                <i class="far fa-calendar-alt fa-lg mr-2" style="color: rgb(219, 174, 90);"></i>
-                                <span style="font-size: .9rem; color: rgb(133, 133, 133);" class="d-inline-block">Etkinlik</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6 py-1">
-                            <div class="second-bar-top-foot px-sm-1">
-                                <i class="fas fa-indent fa-lg mr-2" style="color: palevioletred;"></i>
-                                <span style="font-size: .9rem; color: rgb(133, 133, 133);" class="d-inline-block">Yazı Yaz</span>
+                                <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Video</span>
                             </div>
                         </div>
                     </div>
@@ -276,10 +148,10 @@
                     </div>
                     <div class="ml-auto mr-3 d-inline-block" style="font-size: 12px;">
                         <button class="second-bar-sorting dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sort By: <b style="color: rgb(75, 75, 75);">Top</b>
+                            Sort By: <b style="color: rgb(75, 75, 75);">Recent</b>
                         </button>
                         <div class="dropdown-menu" style="font-size: 12px;" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Top</a>
+                            <!-- <a class="dropdown-item" href="#">Top</a> -->
                             <a class="dropdown-item" href="#">Recent</a>
                         </div>
                     </div>
@@ -287,6 +159,198 @@
                 </div>
 
                 <!-- Second-Bar-Post -->
+
+                 <!-- start post -->
+
+                @forelse($posts as $post)
+
+                    <div class="second-bar-post mb-2">
+                        <div class="card">
+                            <div class="card-top">
+                                <div class="row pt-2 mr-2 ml-xs-4 pl-4 pl-sm-0">
+                                    <div class="col-2" style="padding-right: 0px !important;">
+                                        <img src="https://picsum.photos/id/19/200/300" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+                                    </div>
+                                    <div class="col-8 second-bar-posttop pl-0" style="font-size: 14px;">
+                                        <a href="#" style="color: rgb(61, 60, 60);">
+                                            <b>{{ $post->user->name }}</b>
+                                        </a>
+                                        <small class="d-block mr-1" style="margin-top: -4px; color: rgb(102, 101, 101);">lorem ipsum dolor</small>
+                                        <small class="d-block" style="margin-top: -4px; color: rgb(102, 101, 101);">
+                                            {{ $post->created_at->diffForHumans() }}
+                                            
+                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                            </svg>
+                                            
+                                            <i class="fas fa-globe-americas"></i> -->
+                                            
+                                        </small>
+                                    </div>
+                                    <div class="col-2 pr-0 pt-1" style="color: rgb(121, 121, 121);">
+                                        <i class="fas fa-ellipsis-h float-right p-2 p-xs-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                        <div class="ml-auto mr-3 d-inline-block" style="font-size: 12px;">
+                                            <div class="dropdown-menu" style="font-size: 12px;" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Save</a>
+
+                                                @if(Auth::user()->id == $post->user_id)
+
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editPost" data-post="{{ $post->post }}" data-picture="{{ $post->picture }}" data-video="{{ $post->video }}" data-edit="{{ $post->id }}">Edit</a>
+
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deletePost" data-post="{{ $post->post }}" data-picture="{{ $post->picture }}" data-video="{{ $post->video }}" data-delete="{{ $post->id }}">Delete</a>
+
+                                                @endif
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="card-body-text">{{ $post->post }}</p>
+                                @if(isset($post->picture))
+                                    <img class="card-body-img" style="width: 100%;" src="{{ env('APP_URL') }}/img/post/{{ $post->picture }}" alt="post">
+                                @endif
+
+                                @if(isset($post->video))
+                                    <div class="embed-responsive embed-responsive-4by3">
+                                        <iframe class="embed-responsive-item" src="{{ env('APP_URL') }}/video/post/{{ $post->video }}"></iframe>
+                                    </div>
+                                @endif
+
+                                <!-- <div class="second-bar-icons ml-3 my-1">
+                                    <div class="d-inline-block mr-1">
+                                        <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #eef7ff; background-color: #0a66c2; height: 16px; width: 16px;">
+                                            <i class="fas fa-thumbs-up fa-xs"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-inline-block mr-1">
+                                        <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #cbf0d1; background-color: #0ac25d; height: 16px; width: 16px;">
+                                            <i class="fas fa-hands-wash fa-xs"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-inline-block mr-1" style="color: rgb(153, 152, 152); font-size: 14px;">
+                                        <span>37</span>
+                                    </div>
+                                </div> -->
+                            </div>
+
+                            <!-- <div class="card-footer-second mx-3 my-2 pt-1">
+                                <div class="second-bar-button d-inline-block p-2">
+                                    <i class="far fa-thumbs-up"></i>
+                                    <span>Like</span>
+                                </div>
+                                <div class="second-bar-button d-inline-block p-2" style="color: rgb(177, 175, 175);">
+                                    <i class="far fa-comment-dots"></i>
+                                    <span>Comment</span>
+                                </div>
+                                <div class="second-bar-button d-inline-block p-2">
+                                    <i class="fas fa-share"></i>
+                                    <span>Share</span>
+                                </div>
+                                <div class="second-bar-button d-inline-block p-2">
+                                    <i class="fas fa-location-arrow"></i>
+                                    <span>Send</span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+
+                @empty
+                
+                    No Post
+
+                @endforelse
+
+               
+                <!-- end post -->
+
+                 <!-- start post -->
+
+                 @forelse($posts as $post)
+
+                <div class="second-bar-post mb-2">
+                    <div class="card">
+                        <div class="card-top">
+                            <div class="row pt-2 mr-2 ml-xs-4 pl-4 pl-sm-0">
+                                <div class="col-2" style="padding-right: 0px !important;">
+                                    <img src="https://picsum.photos/id/19/200/300" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+                                </div>
+                                <div class="col-8 second-bar-posttop pl-0" style="font-size: 14px;">
+                                    <a href="#" style="color: rgb(61, 60, 60);">
+                                        <b>Ipsa Hic</b>
+                                    </a>
+                                    <small class="d-block mr-1" style="margin-top: -4px; color: rgb(102, 101, 101);">lorem ipsum dolor</small>
+                                    <small class="d-block" style="margin-top: -4px; color: rgb(102, 101, 101);">
+                                        7 saat
+                                        
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                        </svg>
+                                        
+                                        <i class="fas fa-globe-americas"></i>
+                                    </small>
+                                </div>
+                                <div class="col-2 pr-0 pt-1" style="color: rgb(121, 121, 121);">
+                                    <i class="fas fa-ellipsis-h float-right p-2 p-xs-0"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <p class="card-body-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure possimus quo nostrum sint incidunt quis eos numquam quam eligendi, voluptatibus laudantium? Similique inventore illo cupiditate voluptatibus atque quod doloribus iste voluptate eius itaque. Tempora laboriosam facere, incidunt ipsa minus nam eveniet, doloribus totam dolores libero consequuntur eum nemo asperiores sit. Natus dolor dignissimos reprehenderit culpa tempora, soluta magni aliquid sequi?</p>
+                            <div class="second-bar-icons ml-3 my-1">
+                                <div class="d-inline-block mr-1">
+                                    <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #eef7ff; background-color: #0a66c2; height: 16px; width: 16px;">
+                                        <i class="fas fa-thumbs-up fa-xs"></i>
+                                    </span>
+                                </div>
+                                <div class="d-inline-block mr-1">
+                                    <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #cbf0d1; background-color: #0ac25d; height: 16px; width: 16px;">
+                                        <i class="fas fa-hands-wash fa-xs"></i>
+                                    </span>
+                                </div>
+                                <div class="d-inline-block mr-1" style="color: rgb(153, 152, 152); font-size: 14px;">
+                                    <span>37</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer-second mx-3 my-2 pt-1">
+                            <div class="second-bar-button d-inline-block p-2">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>Beğen</span>
+                            </div>
+                            <div class="second-bar-button d-inline-block p-2" style="color: rgb(177, 175, 175);">
+                                <i class="far fa-comment-dots"></i>
+                                <span>Yorum Yap</span>
+                            </div>
+                            <div class="second-bar-button d-inline-block p-2">
+                                <i class="fas fa-share"></i>
+                                <span>Paylaş</span>
+                            </div>
+                            <div class="second-bar-button d-inline-block p-2">
+                                <i class="fas fa-location-arrow"></i>
+                                <span>Gönder</span>
+                            </div>
+                        </div>
+
+                        <div class="pl-2 py-2" style="font-size: 12px; color: rgb(153, 152, 152); background-color: rgba(243, 242, 239);">
+                            <i class="fas fa-comment-slash"></i>
+                            <span>Bu gönderi için yorumlar kapatıldı. Ancak farklı bir reaksiyon verebilir veya paylaşabilirsiniz.</span>
+                        </div>
+                    </div>
+                </div>
+
+                @empty
+
+                No Post
+
+                @endforelse
+
+
+                <!-- end post -->
 
                 <div class="second-bar-post mb-2">
                     <div class="card">
@@ -437,6 +501,8 @@
                     </div>
                 </div>
 
+               
+
                 <!-- post-1 -->
 
                 <div class="second-bar-post mb-2">
@@ -471,7 +537,7 @@
                             <p class="card-body-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio eaque molestias ad eligendi adipisci! Molestiae saepe labore ad nihil accusamus?</p>
                             <div class="embed-responsive embed-responsive-4by3">
                                 <iframe class="embed-responsive-item" src="https://ak.picdn.net/shutterstock/videos/1056506843/preview/stock-footage-happy-people-using-smartphone-devices-in-world-wide-connected-social-network-diverse-people-do-e.webm"></iframe>
-                                </div>
+                            </div>
                             <div class="second-bar-icons ml-3 my-1">
                                 <div class="d-inline-block mr-1">
                                     <span class="rounded-circle justify-content-center align-items-center d-flex " style="color: #eef7ff; background-color: #0a66c2; height: 16px; width: 16px;">
@@ -1305,5 +1371,19 @@
         </div>
     </div>
 
+
+@endsection
+
+@section('script')
+
+    <script src="{{ asset('vendor/jquery.form.min.js') }}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script> -->
+
+
+    @include('modals.post')
+    @include('modals.photo')
+    @include('modals.video')
+    @include('modals.post-edit')
+    @include('modals.post-delete')
 
 @endsection
