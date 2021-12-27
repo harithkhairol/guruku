@@ -266,10 +266,10 @@
     padding-bottom: 5px;
 }
 
-.viewing:hover {
+/* .viewing:hover {
     background-color: rgb(238, 243, 248);
     cursor: pointer;
-}
+} */
 
 .viewing-text {
     display: inline-block;
@@ -298,10 +298,10 @@
     border-bottom: 1px solid rgb(191, 211, 214);
 }
 
-.third-colon-body:hover {
+/* .third-colon-body:hover {
     background-color: rgb(238, 243, 248);
     cursor: pointer;
-}
+} */
 
 .third-colon-body > p {
     margin-bottom: 0px;
@@ -311,9 +311,9 @@
     color: rgb(247, 180, 57);
 }
 
-.third-colon-body > p > b:hover {
+/* .third-colon-body > p > b:hover {
     color: #0a66c2;
-}
+} */
 
 .card-footer {
     background-color: white;
@@ -326,7 +326,7 @@
 }
 
 .card-footer:hover {
-    background-color: rgb(238, 243, 248);
+    /* background-color: rgb(238, 243, 248); */
     cursor: pointer;
 }
 
@@ -335,7 +335,8 @@
     position: sticky;
     top: 70px;
     font-size: 13px;
-    color: rgb(102, 101, 101);
+    /* color: rgb(102, 101, 101); */
+    color: rgb(40 40 40);
 }
 
 .bottom-body {
@@ -360,10 +361,10 @@
     padding-left: 15px;
 }
 
-.activity:hover {
+/* .activity:hover {
     background-color: rgb(238, 243, 248);
     cursor: pointer;
-}
+} */
 
 .bottom-link {
     padding-left: 15px;
@@ -483,10 +484,10 @@
     color: #0a66c2;
 }
 
-.fa-ellipsis-h:hover {
+/* .fa-ellipsis-h:hover {
     background-color: rgb(238, 243, 248);
     border-radius: 50px;
-}
+} */
 
 .card-body-img {
     width: 100%;

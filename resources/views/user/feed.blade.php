@@ -268,9 +268,7 @@
 
                  <!-- start post -->
 
-                 @forelse($posts as $post)
-
-                <div class="second-bar-post mb-2">
+                 <div class="second-bar-post mb-2">
                     <div class="card">
                         <div class="card-top">
                             <div class="row pt-2 mr-2 ml-xs-4 pl-4 pl-sm-0">
@@ -342,15 +340,6 @@
                         </div>
                     </div>
                 </div>
-
-                @empty
-
-                No Post
-
-                @endforelse
-
-
-                <!-- end post -->
 
                 <div class="second-bar-post mb-2">
                     <div class="card">

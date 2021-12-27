@@ -2,6 +2,17 @@
 @section('title', 'Profile' )
 @section('content')
 
+<style>
+    body{
+        /* color:#000000E6; */
+    }
+    p{
+        font-size: 14px;
+        
+
+    }
+</style>
+
 
     <div class="row d-flex justify-content-between mt-4">
 
@@ -22,11 +33,11 @@
                 </div>
                 <div class="card-body">
                     <div class="first-colon-body">
-                        <p class=" mb-1">
+                        <h6 class="mb-1">
                         <a href="#" style="color: rgb(26, 26, 26);">
                                 <b>{{ Auth::user()->name }}</b>
                             </a>    
-                        </p>
+                        </h6>
                         <p class="job-text">
                             <!-- Bubo Creative Studio şirketinde Intern Frontend Developer -->
                         </p>
@@ -75,13 +86,13 @@
                                 About
                             </h5>
 
-                            <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#aboutModal" title="About" data-desc="name-abc" data-title="about" href=""></a>
+                            <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#aboutModal" title="About" data-title="about" href=""></a>
                         </div>
 
                     </div>
 
-                    <div class="activity mb-3">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam inventore et dolorum sed laborum, saepe quas excepturi! Commodi nihil at, incidunt consequatur, minima numquam corrupti suscipit culpa voluptatum eum veritatis?</p>
+                    <div class="activity mb-3 fs-14">
+                        <p>{{ $profile->about }}</p>
                     </div>
        
                 </div>
@@ -124,35 +135,28 @@
 
                     <div class="activity mb-3">
 
-                        <div class="row-card py-3">
+                        @forelse($experience as $experience)
 
-                            <div class="row-title-card d-flex">
-                                <h6 href="#">
-                                    Software Developer
-                                </h6>
-                                <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#experienceModal" title="About" data-desc="name-abc" data-title="experience" href=""></a>
+                            <div class="row-card py-3">
+
+                                <div class="row-title-card d-flex">
+                                    <h6 href="#">
+                                        {{ $experience->title }}
+                                    </h6>
+                                    <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#experienceModal" title="About" data-desc="name-abc" data-title="experience" href=""></a>
+                                </div>
+
+                                <b><p>{{ $experience->company_name }} &bull; {{ $experience->employment_type }}</p></b> 
+                                <p>{{ date("M Y", strtotime($experience->start_date)) }} - {{ date("M Y", strtotime($experience->end_date)) }} &bull; {{ date_diff(new \DateTime($experience->start_date), new \DateTime($experience->end_date))->format("%y Years, %m Months") }}</p>
+                                <p>{{ $experience->location }}</p>
+
                             </div>
 
-                            <b><p>Pacton Technologies Sdn Bhd</p></b>
-                            <p>Oct 2021 - Present &bull; 3 Mos</p>
-                            <p>Selangor, Malaysia</p>
+                        @empty
+                
+                            Empty
 
-                        </div>
-
-                        <div class="row-card py-3">
-
-                            <div class="row-title-card d-flex">
-                                <h6 href="#">
-                                    Software Developer
-                                </h6>
-                                <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#experienceModal" title="About" data-desc="name-abc" data-title="experience" href=""></a>
-                            </div>
-
-                            <b><p>Pacton Technologies Sdn Bhd</p></b>
-                            <p>Oct 2021 - Present &bull; 3 Mos</p>
-                            <p>Selangor, Malaysia</p>
-
-                        </div>
+                        @endforelse
                         
                     </div>
        

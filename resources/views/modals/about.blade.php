@@ -8,20 +8,25 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                
-                <div class="col-12">
-                    <p id="textAbout"></p>
-                    <textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Write about yourself here....." class="form-control"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
+
             <form id="formAbout" action="" method="POST">
                 @csrf
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" id="btnUpdateAbout" value="">Save</button>
+
+                <div class="modal-body">
+                    
+                    <div class="col-12">
+                        <p id="textAbout"></p>
+                        <textarea name="about" id="about" rows="9" placeholder="Write about yourself here....." class="form-control">{{ $profile->about }}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">            
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnUpdateAbout" value="">Save</button>
+                </div>
+
             </form>
-            </div>
+
+            
         </div>
     </div>
 </div>
@@ -42,9 +47,7 @@
 
     $('#btnUpdateAbout').click(function(){
     
-        var aboutDesc = $('#btnUpdateAbout').val();
-
-        $('#formAbout').attr("action", '/property/photo/'+aboutDesc+'/delete');
+        $('#formAbout').attr("action", '/about/update/');
 
     });
 

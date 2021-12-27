@@ -23,6 +23,10 @@ Route::get('/feed', [UserController::class, 'feed'])->name('user.feed');
 
 Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 
+Route::post('/about/update', [UserController::class, 'updateAbout'])->name('user.about.update');
+
+Route::post('/experience/store', [UserController::class, 'experienceStore'])->name('user.experience.store');
+
 Route::get('/test', [PostController::class, 'test'])->name('test');
 
 Route::post('/post', [PostController::class, 'store'])->name('post');
