@@ -81,11 +81,7 @@ class UserController extends Controller
             'descriptionExperience' => 'nullable',
         ]);
 
-        return $request->typeExperience;
-
-        $start_date = $request->yearExperience.'-'.$request->monthExperience.'-01';
-        $end_date = $request->endYearExperience.'-'.$request->endMonthExperience.'-01';
-
+        
         $experience = new Experience;
 
         $experience->user_id = Auth::user()->id;
@@ -93,9 +89,31 @@ class UserController extends Controller
         $experience->employment_type = $request->typeExperience;
         $experience->company_name = $request->companyExperience;
         $experience->location = $request->location;
-        $experience->current = $request->monthExperience;
-        $experience->start_date = $start_date;
-        $experience->end_date = $end_date;
+        
+
+        if(isset($request->yearExperience)){
+
+            $start_date = $request->yearExperience.'-'.$request->monthExperience.'-01';
+            $experience->start_date = $start_date;
+
+        }
+
+        if(isset($request->currentExperience)){
+
+            $end_date = '2100-12-01';
+            $experience->end_date = $end_date;
+            $experience->current = $request->currentExperience;
+
+        }
+
+        elseif(isset($request->endYearExperience)){
+
+            $end_date = $request->endYearExperience.'-'.$request->endMonthExperience.'-01';
+            $experience->end_date = $end_date;
+            $experience->current = "0";
+
+        }
+
         $experience->description = $request->description;
 
         $experience->save();
@@ -115,7 +133,7 @@ class UserController extends Controller
 
         $profile = UserProfile::where('user_id', Auth::user()->id)->first();
 
-        $experience = Experience::where('user_id', Auth::user()->id)->get();
+        $experience = Experience::where('user_id', Auth::user()->id)->orderByDesc('start_date')->get();
 
         return view('user.profile', compact('profile', 'experience'));
     }
@@ -143,6 +161,63 @@ class UserController extends Controller
         //
     }
 
+    public function updateExperience(Request $request, $id)
+    {
+
+        $request->validate([
+            'editTitleExperience' => 'required',
+            'editTypeExperience' => 'nullable',
+            'editCompanyExperience' => 'required',
+            'editLocationExperience' => 'nullable',
+            'editCurrentExperience' => 'nullable',
+            'editMonthExperience' => 'required',
+            'editYearExperience' => 'required',
+            'editEndMonthExperience' => 'nullable',
+            'editEndYearExperience' => 'nullable',
+            'editDescriptionExperience' => 'nullable',
+        ]);
+
+        $experience = Experience::where('id', $id)->first();
+
+        $experience->title = $request->editTitleExperience;
+        $experience->employment_type = $request->editTypeExperience;
+        $experience->company_name = $request->editCompanyExperience;
+        $experience->location = $request->editLocationExperience;
+        
+
+        if(isset($request->editYearExperience)){
+
+            $start_date = $request->editYearExperience.'-'.$request->editMonthExperience.'-01';
+            $experience->start_date = $start_date;
+
+        }
+
+        if(isset($request->editCurrentExperience)){
+
+            $experience->current = $request->editCurrentExperience;
+
+            $end_date = '2100-12-01';
+            $experience->end_date = $end_date;
+
+        }
+
+        elseif(isset($request->editEndYearExperience)){
+
+            $end_date = $request->editEndYearExperience.'-'.$request->editEndMonthExperience.'-01';
+            $experience->end_date = $end_date;
+            $experience->current = "0";
+
+        }
+
+        $experience->description = $request->editDescriptionExperience;
+
+        $experience->save();
+
+        return back()->with("success", "Experience has been updated successfully!");
+
+    }
+
+    
     public function updateAbout(Request $request)
     {
 
@@ -169,5 +244,18 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function destroyExperience(Request $request, $id)
+    {
+
+        $experience = Experience::where('id', $id)->first();
+
+        $company_name = $experience->company_name;
+
+        $experience->delete();
+
+        return back()->with('success', 'Experience at '.$company_name.' has been deleted successfully!');
+
     }
 }

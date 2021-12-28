@@ -1,28 +1,28 @@
 <!-- delete property photo modal -->
-<div class="modal fade" id="experienceModal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
+<div class="modal fade" id="editExperienceModal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="scrollmodalLabel">Add <span id="titleExperience"></span></h5>
+                <h5 class="modal-title" id="scrollmodalLabel">Edit experience</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            <form id="formExperience" action="" method="POST">
+            <form id="formEditExperience" action="" method="POST">
                 @csrf
                 
                 <div class="modal-body">
 
                     <div class="form-group">
                         <label for="nf-email" class=" form-control-label">Title</label>
-                        <input type="text" id="titleExperience" name="titleExperience" placeholder="Enter Title.." class="form-control">
+                        <input type="text" id="editTitleExperience" name="editTitleExperience" placeholder="Enter Title.." class="form-control">
                         <!-- <span class="help-block">Please enter your email</span> -->
                     </div>
                     
                     <div class="form-group">
                         <label for="nf-email" class=" form-control-label">Employment type</label>
-                        <select class="form-control" id="typeExperience" name="typeExperience">
+                        <select class="form-control" id="editTypeExperience" name="editTypeExperience">
                             <option selected disabled>Please select</option>
                             <option value="Full-time">Full-time</option>
                             <option value="Part-time">Part-time</option>
@@ -38,20 +38,20 @@
 
                     <div class="form-group">
                         <label for="nf-email" class=" form-control-label">Company name*</label>
-                        <input type="text" id="companyExperience" name="companyExperience" placeholder="Enter Company Name.." class="form-control">
+                        <input type="text" id="editCompanyExperience" name="editCompanyExperience" placeholder="Enter Company Name.." class="form-control">
                         <!-- <span class="help-block">Please enter your email</span> -->
                     </div>
 
                     <div class="form-group">
                         <label for="nf-email" class=" form-control-label">Location</label>
-                        <input type="text" id="locationExperience" name="locationExperience" placeholder="Enter Location.." class="form-control">
+                        <input type="text" id="editLocationExperience" name="editLocationExperience" placeholder="Enter Location.." class="form-control">
                         <!-- <span class="help-block">Please enter your email</span> -->
                     </div>
 
                     <div class="form-check mb-2">
                         <div class="checkbox">
                             <label for="checkbox1" class="form-check-label ">
-                                <input onclick="current()" type="checkbox" id="currentExperience" name="currentExperience" value="1" class="form-check-input">Currently Working In This Role
+                                <input onclick="editCurrent()" type="checkbox" id="editCurrentExperience" name="editCurrentExperience" value="1" class="form-check-input">Currently Working In This Role
                             </label>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <select class="form-control" id="monthExperience" name="monthExperience">
+                                    <select class="form-control" id="editMonthExperience" name="editMonthExperience">
                                         <option selected disabled>Month</option>
                                         <option value="1">January</option>
                                         <option value="2">February</option>
@@ -82,12 +82,13 @@
                             <div class="col-6">
                                 <!-- <label for="x_card_code" class="control-label mb-1">Security code</label> -->
                                 <div class="form-group">
-                                    <select class="form-control" id="yearExperience" name="yearExperience">
+                                    <select class="form-control" id="editYearExperience" name="editYearExperience">
                                         <option selected disabled>Year</option>
 
-                                        @foreach (range(date('Y'), date('Y')  - 100) as $year)
-                                            <option value="{{ $year }}">{{ $year }}</option>
-                                        @endforeach
+                                            @foreach (range(date('Y'), date('Y')  - 100) as $year)
+                                                <option value="{{ $year }}">{{ $year }}</option>
+                                            @endforeach
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -99,7 +100,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <select class="form-control" id="endMonthExperience" name="endMonthExperience">
+                                    <select class="form-control" id="editEndMonthExperience" name="editEndMonthExperience">
                                         <option selected disabled>Month</option>
                                         <option value="1">January</option>
                                         <option value="2">February</option>
@@ -120,12 +121,13 @@
                             <div class="col-6">
                                 <!-- <label for="x_card_code" class="control-label mb-1">Security code</label> -->
                                 <div class="form-group">
-                                    <select class="form-control" id="endYearExperience" name="endYearExperience">
+                                    <select class="form-control" id="editEndYearExperience" name="editEndYearExperience">
                                         <option selected disabled>Year</option>
 
                                         @foreach (range(date('Y'), date('Y')  - 100) as $year)
                                             <option value="{{ $year }}">{{ $year }}</option>
                                         @endforeach
+
                                     </select>
                                 </div>
                             </div>
@@ -134,14 +136,15 @@
 
                     <div class="form-group">
                         <label for="nf-email" class=" form-control-label">Description</label>
-                        <textarea name="descriptionExperience" id="descriptionExperience" rows="9" placeholder="Enter Description....." class="form-control"></textarea>
+                        <textarea name="editDescriptionExperience" id="editDescriptionExperience" rows="9" placeholder="Enter Description....." class="form-control"></textarea>
                     </div>
                     
                 </div>
-                <div class="modal-footer">
-                
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary" id="btnCreateExperience" value="">Save</button>
+                <div class="modal-footer" style="display: block;">
+
+                    <button type="submit" class="btn btn-danger" id="btnDeleteExperience" value="">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="float:right;">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnEditExperience" value="" style="float:right;">Save</button>
                 
                 </div>
 
@@ -153,32 +156,116 @@
 
 <script>
 
-    $('#experienceModal').on('show.bs.modal', function (event) {
+    $('#editExperienceModal').on('show.bs.modal', function (event) {
         
-        let descAbout = $(event.relatedTarget).data('desc');
-        let titleExperience = $(event.relatedTarget).data('title');
-        
-        $('#titleExperience').text(titleExperience);
-        $('#textAbout').text('Description');
+        let editExperience = $(event.relatedTarget).data('update');
+
+        let editTitleExperience = $(event.relatedTarget).data('title');
+
+        let editTypeExperience = $(event.relatedTarget).data('type');
+
+        let editCompanyExperience = $(event.relatedTarget).data('company');
+
+        let editLocationExperience = $(event.relatedTarget).data('location');
+
+        let editCurrentExperience = $(event.relatedTarget).data('current');
+
+        let editMonthExperience = $(event.relatedTarget).data('startmonth');
+
+        let editYearExperience = $(event.relatedTarget).data('startyear');
+
+        let editEndMonthExperience = $(event.relatedTarget).data('endmonth');
+
+        let editEndYearExperience = $(event.relatedTarget).data('endyear');
+
+        let editDescriptionExperience = $(event.relatedTarget).data('desc');
+
+        $('#editTitleExperience').val(editTitleExperience);
+
+        $('#editTypeExperience').val(editTypeExperience);
+
+        $('#editCompanyExperience').val(editCompanyExperience);
+
+        $('#editLocationExperience').val(editLocationExperience);
+
+        // $('#editCurrentExperience').val(editCurrentExperience);
+
+        $('#editMonthExperience').val(parseInt(editMonthExperience));
+
+        $('#editYearExperience').val(editYearExperience);
+
+        if(editCurrentExperience == 1){
+
+            $( "#editCurrentExperience" ).prop( "checked", true );
+            
+            $("select#editEndMonthExperience").index(0); 
+
+            $("select#editEndYearExperience").index(0);
+
+            $("#editEndMonthExperience").prop('disabled', true);
+
+            $("#editEndYearExperience").prop('disabled', true);
+
+        }
+
+        else{
+
+            $( "#editCurrentExperience" ).prop( "checked", false );
+
+            $("#editEndMonthExperience").prop('disabled', false);
+
+            $("#editEndYearExperience").prop('disabled', false);
+
+            $('#editEndMonthExperience').val(parseInt(editEndMonthExperience));
+
+            $('#editEndYearExperience').val(editEndYearExperience);
+
+        }
+
+        $('#editDescriptionExperience').val(editDescriptionExperience);
+
+        $('#btnEditExperience').val(editExperience);
+        $('#btnDeleteExperience').val(editExperience);
 
     });
 
 
-    $('#btnCreateExperience').click(function(){
+    $('#btnEditExperience').click(function(){
+
+        let experience_edit = $("#btnEditExperience").val();
     
-        $('#formExperience').attr("action", '/experience/store/');
+        $('#formEditExperience').attr("action", '/experience/'+ experience_edit +'/update/');
 
     });
 
-    function current(){
-   
-        $("#endMonthExperience").prop('disabled', function (_, val) { return ! val; });
+    $('#btnDeleteExperience').click(function(){
 
-        $("#endYearExperience").prop('disabled', function (_, val) { return ! val; });
+        let experience_delete = $("#btnDeleteExperience").val();
+
+        let experience_company = $("#editCompanyExperience").val();
+
+        if(!confirm('Do you really want to delete experience at '+ experience_company +'?')){
+            
+            return false;
+        
+        }
+
+        else{
+
+            $('#formEditExperience').attr("action", '/experience/'+ experience_delete +'/delete/');
+
+        }
+
+    });
+
+    
+
+    function editCurrent(){
+
+        $("#editEndMonthExperience").prop('disabled', function (_, val) { return ! val; });
+
+        $("#editEndYearExperience").prop('disabled', function (_, val) { return ! val; });
 
     }
-
-
-    // $('#monthExperience').prop('disabled');
 
 </script>

@@ -27,6 +27,10 @@ Route::post('/about/update', [UserController::class, 'updateAbout'])->name('user
 
 Route::post('/experience/store', [UserController::class, 'experienceStore'])->name('user.experience.store');
 
+Route::post('/experience/{id}/update', [UserController::class, 'updateExperience'])->name('user.experience.update');
+
+Route::post('/experience/{id}/delete', [UserController::class, 'destroyExperience'])->name('user.experience.destroy');
+
 Route::get('/test', [PostController::class, 'test'])->name('test');
 
 Route::post('/post', [PostController::class, 'store'])->name('post');

@@ -3,14 +3,27 @@
 @section('content')
 
 <style>
+
     body{
         /* color:#000000E6; */
     }
+
     p{
         font-size: 14px;
-        
-
     }
+
+    .desc-experience{
+        margin-top: 16px;
+    }
+
+    .w-95{
+        width: 95%;
+    }
+
+    .text-gray{
+        color: #00000099;
+    }
+                                                            
 </style>
 
 
@@ -91,7 +104,7 @@
 
                     </div>
 
-                    <div class="activity mb-3 fs-14">
+                    <div class="activity mb-3 w-95">
                         <p>{{ $profile->about }}</p>
                     </div>
        
@@ -140,15 +153,58 @@
                             <div class="row-card py-3">
 
                                 <div class="row-title-card d-flex">
-                                    <h6 href="#">
-                                        {{ $experience->title }}
-                                    </h6>
-                                    <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#experienceModal" title="About" data-desc="name-abc" data-title="experience" href=""></a>
+
+                                    <b>
+
+                                        <h5 href="#">
+                                            {{ $experience->title }}
+                                        </h5>
+                                        
+                                    </b>
+                                    
+                                    <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#editExperienceModal" title="About" data-update="{{ $experience->id }}" data-title="{{ $experience->title }}" data-type="{{ $experience->employment_type }}" data-company="{{ $experience->company_name }}" data-location="{{ $experience->location }}" data-current="{{ $experience->current }}" data-startmonth='{{ date("m", strtotime($experience->start_date)) }}' data-startyear='{{ date("Y", strtotime($experience->start_date)) }}' data-endmonth='{{ date("m", strtotime($experience->end_date)) }}' data-endyear='{{ date("Y", strtotime($experience->end_date)) }}' data-desc="{{ $experience->description }}"></a>
                                 </div>
 
                                 <b><p>{{ $experience->company_name }} &bull; {{ $experience->employment_type }}</p></b> 
-                                <p>{{ date("M Y", strtotime($experience->start_date)) }} - {{ date("M Y", strtotime($experience->end_date)) }} &bull; {{ date_diff(new \DateTime($experience->start_date), new \DateTime($experience->end_date))->format("%y Years, %m Months") }}</p>
-                                <p>{{ $experience->location }}</p>
+
+                                @if($experience->current == "0")
+
+                                    <p class="text-gray">{{ date("M Y", strtotime($experience->start_date)) }} - {{ date("M Y", strtotime($experience->end_date)) }} &bull; 
+                                        
+                                        {{ date_diff(new \DateTime($experience->start_date), new \DateTime($experience->end_date))->format("%y Years, %m Months") }}
+                                
+                                    </p>
+
+                                @else
+
+                                    <p class="text-gray">{{ date("M Y", strtotime($experience->start_date)) }} - Present &bull; 
+
+                                        @if(date_diff(new \DateTime($experience->start_date), new \DateTime())->format("%m") == 0 && date_diff(new \DateTime($experience->start_date), new \DateTime())->format("%y") == 0)
+
+                                            New
+
+                                        @elseif(date_diff(new \DateTime($experience->start_date), new \DateTime())->format("%y") == 0)
+
+                                            {{ date_diff(new \DateTime($experience->start_date), new \DateTime())->format("%m Months") }}
+
+                                        @else
+
+                                            {{ date_diff(new \DateTime($experience->start_date), new \DateTime())->format("%y Years, %m Months") }}
+
+                                        @endif
+
+                                    </p>
+                                        
+                                    
+
+                                @endif
+
+                                
+                                <p class="text-gray">{{ $experience->location }}</p>
+
+                                <div class="desc-experience w-95">
+                                    <p>{{ $experience->description }}</p>
+                                </div>
 
                             </div>
 
@@ -417,6 +473,7 @@
 
     @include('modals.about')
     @include('modals.experience')
+    @include('modals.edit-experience')
     @include('modals.education')
 
 @endsection
