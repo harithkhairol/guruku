@@ -12,7 +12,7 @@
         font-size: 14px;
     }
 
-    .desc-experience{
+    .desc-card{
         margin-top: 16px;
     }
 
@@ -202,7 +202,7 @@
                                 
                                 <p class="text-gray">{{ $experience->location }}</p>
 
-                                <div class="desc-experience w-95">
+                                <div class="desc-card w-95">
                                     <p>{{ $experience->description }}</p>
                                 </div>
 
@@ -239,35 +239,37 @@
 
                     <div class="activity mb-3">
 
-                        <div class="row-card py-3">
+                        @forelse($education as $education)
 
-                            <div class="row-title-card d-flex">
-                                <h6 href="#">
-                                    Software Developer
-                                </h6>
-                                <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#experienceModal" title="About" data-desc="name-abc" data-title="experience" href=""></a>
+                            <div class="row-card py-3">
+
+                                <div class="row-title-card d-flex">
+                                    <h6 href="#">
+                                        <b>{{ $education->school }}</b>
+                                    </h6>
+                                    <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#editEducationModal" title="About" data-update="{{ $education->id }}" data-school="{{ $education->school }}" data-degree="{{ $education->degree }}" data-fos="{{ $education->fos }}" data-startmonth='{{ date("m", strtotime($education->start_date)) }}' data-startyear='{{ date("Y", strtotime($education->start_date)) }}' data-endmonth='{{ date("m", strtotime($education->end_date)) }}' data-endyear='{{ date("Y", strtotime($education->end_date)) }}' data-grade="{{ $education->grade }}" data-activities="{{ $education->activities }}" data-desc="{{ $education->description }}"></a>
+                                </div>
+
+                                <p>{{ $education->degree }}@if(!empty($education->fos)), {{ $education->fos }}@endif<span>@if(!empty($education->grade)), {{ $education->grade }} @endif</span></p>
+                                <p class="text-gray">{{ date("M Y", strtotime($education->start_date)) }} - {{ date("M Y", strtotime($education->end_date)) }}</p>
+
+                                @if(isset($education->activities))
+
+                                    <p class="text-gray">Activities & Socities: {{ $education->activities }}</p>
+
+                                @endif
+                                
+                                <div class="desc-card w-95">
+                                    <p>{{ $education->description }}</p>
+                                </div>
+
                             </div>
 
-                            <b><p>Pacton Technologies Sdn Bhd</p></b>
-                            <p>Oct 2021 - Present &bull; 3 Mos</p>
-                            <p>Selangor, Malaysia</p>
+                        @empty
+            
+                            Empty
 
-                        </div>
-
-                        <div class="row-card py-3">
-
-                            <div class="row-title-card d-flex">
-                                <h6 href="#">
-                                    Software Developer
-                                </h6>
-                                <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#experienceModal" title="About" data-desc="name-abc" data-title="experience" href=""></a>
-                            </div>
-
-                            <b><p>Pacton Technologies Sdn Bhd</p></b>
-                            <p>Oct 2021 - Present &bull; 3 Mos</p>
-                            <p>Selangor, Malaysia</p>
-
-                        </div>
+                        @endforelse
                         
                     </div>
        
@@ -475,5 +477,6 @@
     @include('modals.experience')
     @include('modals.edit-experience')
     @include('modals.education')
+    @include('modals.edit-education')
 
 @endsection

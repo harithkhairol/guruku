@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\Post;
 use App\Models\Experience;
+use App\Models\Education;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -122,6 +123,42 @@ class UserController extends Controller
 
     }
 
+    public function educationStore(Request $request)
+    {
+        $request->validate([
+            'schoolEducation' => 'required',
+            'degreeEducation' => 'nullable',
+            'fosEducation' => 'nullable',
+            'monthEducation' => 'nullable',
+            'yearEducation' => 'nullable',
+            'endMonthEducation' => 'nullable',
+            'endYearEducation' => 'nullable',
+            'gradeEducation' => 'nullable',
+            'activitiesEducation' => 'nullable',
+            'descriptionEducation' => 'nullable',
+        ]);
+
+        $start_date = $request->yearEducation.'-'.$request->monthEducation.'-01';
+        $end_date = $request->endYearEducation.'-'.$request->endMonthEducation.'-01';
+
+        $education = new Education;
+
+        $education->user_id = Auth::user()->id;
+        $education->school = $request->schoolEducation;
+        $education->degree = $request->degreeEducation;
+        $education->fos = $request->fosEducation;
+        $education->start_date = $start_date;
+        $education->end_date = $end_date;
+        $education->grade = $request->gradeEducation;
+        $education->activities = $request->activitiesEducation;
+        $education->description = $request->descriptionEducation;
+
+        $education->save();
+
+        return back()->with("success", "Education ". $request->schoolEducation ." has been created successfully!");
+
+    }
+    
     /**
      * Display the specified resource.
      *
@@ -135,7 +172,9 @@ class UserController extends Controller
 
         $experience = Experience::where('user_id', Auth::user()->id)->orderByDesc('start_date')->get();
 
-        return view('user.profile', compact('profile', 'experience'));
+        $education = Education::where('user_id', Auth::user()->id)->orderByDesc('start_date')->get();
+
+        return view('user.profile', compact('profile', 'experience', 'education'));
     }
 
     /**
@@ -217,6 +256,41 @@ class UserController extends Controller
 
     }
 
+    public function updateEducation(Request $request, $id)
+    {
+
+        $request->validate([
+            'editSchoolEducation' => 'required',
+            'editDegreeEducation' => 'nullable',
+            'editFosEducation' => 'nullable',
+            'editMonthEducation' => 'nullable',
+            'editYearEducation' => 'nullable',
+            'editEndMonthEducation' => 'nullable',
+            'editEndYearEducation' => 'nullable',
+            'editGradeEducation' => 'nullable',
+            'editActivitiesEducation' => 'nullable',
+            'editDescriptionEducation' => 'nullable',
+        ]);
+
+        $start_date = $request->editYearEducation.'-'.$request->editMonthEducation.'-01';
+        $end_date = $request->editEndYearEducation.'-'.$request->editEndMonthEducation.'-01';
+
+        $education = Education::where('id', $id)->first();
+
+        $education->school = $request->editSchoolEducation;
+        $education->degree = $request->editDegreeEducation;
+        $education->fos = $request->editFosEducation;
+        $education->start_date = $start_date;
+        $education->end_date = $end_date;
+        $education->grade = $request->editGradeEducation;
+        $education->activities = $request->editActivitiesEducation;
+        $education->description = $request->editDescriptionEducation;
+
+        $education->save();
+
+        return back()->with("success", "Education ". $request->schoolEducation ." has been updated successfully!");
+
+    }
     
     public function updateAbout(Request $request)
     {
@@ -256,6 +330,19 @@ class UserController extends Controller
         $experience->delete();
 
         return back()->with('success', 'Experience at '.$company_name.' has been deleted successfully!');
+
+    }
+
+    public function destroyEducation(Request $request, $id)
+    {
+
+        $education = Education::where('id', $id)->first();
+
+        $school = $education->school;
+
+        $education->delete();
+
+        return back()->with('success', 'Education at '.$school.' has been deleted successfully!');
 
     }
 }

@@ -1,4 +1,4 @@
-<!-- delete property photo modal -->
+<!-- delete experience photo modal -->
 <div class="modal fade" id="experienceModal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
