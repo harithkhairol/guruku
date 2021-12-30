@@ -180,6 +180,7 @@
 /* body-content */
 
 .body-content {
+    min-height: 1007px;
     background-color: rgba(243, 242, 239);
     /* background-color: rgb(239 243 240); */
     
