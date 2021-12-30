@@ -37,6 +37,10 @@ Route::post('/education/{id}/update', [UserController::class, 'updateEducation']
 
 Route::post('/education/{id}/delete', [UserController::class, 'destroyEducation'])->name('user.education.destroy');
 
+Route::post('/intro/update', [UserController::class, 'updateIntro'])->name('user.intro.update');
+
+Route::post('/user/image', [UserController::class, 'updateImage'])->name('user.image');
+
 Route::get('/test', [PostController::class, 'test'])->name('test');
 
 Route::post('/post', [PostController::class, 'store'])->name('post');

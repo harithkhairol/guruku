@@ -40,33 +40,59 @@
                     </div>
                     <div class="card-img-top d-flex justify-content-center">
                         <div class="first-colon-image rounded-circle d-flex">
-                            <img src="{{ asset('img/user2.png') }}" class="first-colon-img rounded-circle" alt="profil-photo">
+                            <a data-toggle="modal" href="#userPhotoModal" >
+                                
+                                @if(Auth::user()->profile_picture)
+
+                                    <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
+
+                                @else
+
+                                    <img src="{{ asset('img/user2.png') }}" class="first-colon-img rounded-circle" alt="profil-photo">
+
+                                @endif
+                            </a>
+                            
                         </div>
                     </div>
                 </div>
+
+                <style>
+                    .profile-intro{
+                        font-size: 14px;
+                    }
+                </style>
                 <div class="card-body">
                     <div class="first-colon-body">
                         <h6 class="mb-1">
-                        <a href="#" style="color: rgb(26, 26, 26);">
+                            <a href="#" style="color: rgb(26, 26, 26);">
                                 <b>{{ Auth::user()->name }}</b>
                             </a>    
+                            &nbsp;
+                            <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#introModal" title="About" data-title="about" style="position: absolute;"></a>
                         </h6>
-                        <p class="job-text">
-                            <!-- Bubo Creative Studio şirketinde Intern Frontend Developer -->
-                        </p>
+                        
+                        <h7>{{ $user_intro->headline }}</h7>
+
+                        <div class="profile-intro pt-2 pb-3">
+
+                            <span class="text-gray">{{ $user_intro->city }} &bull; <a data-toggle="modal" href="#contactModal" >Contact Info</a></span>
+
+                        </div>
+                    
                     </div>
 
                     <div class="d-md-block">
-                        <div class="second-colon-body">
+                        <!-- <div class="second-colon-body">
                             <div class="viewing d-flex">
                                 <p class="viewing-text">
                                     Connection
                                 </p>
                                 <a class="viewing-link ml-auto" href="#">
-                                    6849
+                                    0
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="third-colon-body d-none">
                             <p style="color: rgb(102, 101, 101);">
                                 Özel araç ve içgörülere erişin
@@ -99,7 +125,7 @@
                                 About
                             </h5>
 
-                            <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#aboutModal" title="About" data-title="about" href=""></a>
+                            <a id="aboutIcon" class="fas fa-edit ml-auto mr-4" data-toggle="modal" href="#aboutModal" title="About" data-title="about"></a>
                         </div>
 
                     </div>
@@ -281,51 +307,8 @@
 
         <div class="col-lg-3 col-md-5 third-colon-left p-lg-0 rounded-top">
             
-            <div class="card">
-                <div class="left-bar-top rounded pb-3">
-                    <div class="pt-3 pb-2 pl-2 pr-3 d-flex">
-                        <b style="display: inline-block;">
-                            Today's Top
-                        </b>
-                        <i class="fas fa-info-circle ml-auto"></i>
-                    </div>
-                    <div class="heading-left mb-2">
-                        <b class="mx-2 d-block" style="font-size: 14px;">1. Discussing Racism with Dr. Christina</b>
-                        <div class="d-flex justify-content-between">
-                            <small class="mx-4">Christina Greer</small>
-                            <i class="fas fa-external-link-alt mr-2 d-none" style="color:rgb(153, 152, 152);"></i>
-                        </div>
-                    </div>
-                    <div class="heading-left mb-2">
-                        <b class="mx-2 d-block" style="font-size: 14px;">2. What is Graphic Design?</b>
-                        <div class="d-flex justify-content-between">
-                            <small class="mx-4">Sean Adams</small>
-                            <i class="fas fa-external-link-alt mr-2 d-none" style="color:rgb(153, 152, 152);"></i>
-                        </div>
-                    </div>
-                    <div class="heading-left mb-3">
-                        <b class="mx-2 d-block" style="font-size: 14px;">3. Unconscious Bias</b>
-                        <div class="d-flex justify-content-between">
-                            <small class="mx-4">Stacey Gordon</small>
-                            <i class="fas fa-external-link-alt mr-2 d-none" style="color:rgb(153, 152, 152);"></i>
-                        </div>
-                    </div>
+            @include('layouts.side-ads')
 
-                    <div class="left-bar-bottom row mx-2 pl-2 pr-1" style="color: rgb(153, 152, 152); font-size: 15px;">
-                        <div class="col-10 text-center">
-                            <span class="pl-1">
-                                Guru Learning‘de daha fazlasını göster
-                            </span>
-                        </div>
-                        <div class="col-2 pl-0">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>                                  
-                    </div>
-                </div>
-            </div>
-
-     
-            
         </div>
 
         <!-- third-colon -->
@@ -337,7 +320,7 @@
                 </div>
 
                 <div class="left-bar-footer">
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-lg-3 col-2 mr-lg-0 mr-1 left-foot">
                             <a href="#">
                                 Hakkında
@@ -452,10 +435,10 @@
                                 Daha Fazla
                             </a>
                         </div>
-                    </div>
-                    <div class="left-bar-end mt-3 text-center" style="font-size: 12px;">
+                    </div> -->
+                    <div class="left-bar-end mb-2 text-center" style="font-size: 12px;">
                         <div>
-                            <b style="color: #0a66c2;">Guru</b> 
+                            <b style="color: rgba(104 190 203);">Guru</b> 
                             &bull;
                             <span style="color: rgb(68, 68, 68);">
                                 Tinka © 2021
@@ -473,6 +456,9 @@
 
 @section('script')
 
+    @include('modals.user-photo')
+    @include('modals.intro')
+    @include('modals.contact')
     @include('modals.about')
     @include('modals.experience')
     @include('modals.edit-experience')

@@ -228,6 +228,7 @@
 }
 
 .first-colon-img {
+    object-fit: cover;
     width: 66px;
     height: 66px;
     text-align: center;

@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="d-none d-md-block">
-                        <div class="second-colon-body">
+                        <!-- <div class="second-colon-body">
                             <div class="viewing d-flex">
                                 <p class="viewing-text">
                                     Connection
@@ -41,7 +41,7 @@
                                     6849
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="third-colon-body d-none">
                             <p style="color: rgb(102, 101, 101);">
                                 Özel araç ve içgörülere erişin
@@ -78,7 +78,7 @@
                 <div class="collapse mb-3" id="collapseExample">
                     <div>
                         <div class="card mb-2">
-                            <div class="second-colon-body">
+                            <!-- <div class="second-colon-body">
                                 <div class="viewing d-flex">
                                     <p class="viewing-text">
                                         Connection
@@ -87,7 +87,7 @@
                                         6849
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="third-colon-body d-none">
                                 <p style="color: rgb(102, 101, 101);">
                                     Özel araç ve içgörülere erişin
@@ -175,8 +175,7 @@
                                         <a href="#" style="color: rgb(61, 60, 60);">
                                             <b>{{ $post->user->name }}</b>
                                         </a>
-                                        <small class="d-block mr-1" style="margin-top: -4px; color: rgb(102, 101, 101);">lorem ipsum dolor</small>
-                                        <small class="d-block" style="margin-top: -4px; color: rgb(102, 101, 101);">
+                                        <small class="d-block" style="margin-top: 1px; color: rgb(102, 101, 101);">
                                             {{ $post->created_at->diffForHumans() }}
                                             
                                             <!-- <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
@@ -1178,57 +1177,16 @@
         <!-- third-colon -->
         <div class="col-lg-3 third-colon-left p-lg-0 rounded-top">
             
-            <div class="card">
-                <div class="left-bar-top rounded pb-3">
-                    <div class="pt-3 pb-2 pl-2 pr-3 d-flex">
-                        <b style="display: inline-block;">
-                            Today's Top
-                        </b>
-                        <i class="fas fa-info-circle ml-auto"></i>
-                    </div>
-                    <div class="heading-left mb-2">
-                        <b class="mx-2 d-block" style="font-size: 14px;">1. Discussing Racism with Dr. Christina</b>
-                        <div class="d-flex justify-content-between">
-                            <small class="mx-4">Christina Greer</small>
-                            <i class="fas fa-external-link-alt mr-2 d-none" style="color:rgb(153, 152, 152);"></i>
-                        </div>
-                    </div>
-                    <div class="heading-left mb-2">
-                        <b class="mx-2 d-block" style="font-size: 14px;">2. What is Graphic Design?</b>
-                        <div class="d-flex justify-content-between">
-                            <small class="mx-4">Sean Adams</small>
-                            <i class="fas fa-external-link-alt mr-2 d-none" style="color:rgb(153, 152, 152);"></i>
-                        </div>
-                    </div>
-                    <div class="heading-left mb-3">
-                        <b class="mx-2 d-block" style="font-size: 14px;">3. Unconscious Bias</b>
-                        <div class="d-flex justify-content-between">
-                            <small class="mx-4">Stacey Gordon</small>
-                            <i class="fas fa-external-link-alt mr-2 d-none" style="color:rgb(153, 152, 152);"></i>
-                        </div>
-                    </div>
-
-                    <div class="left-bar-bottom row mx-2 pl-2 pr-1" style="color: rgb(153, 152, 152); font-size: 15px;">
-                        <div class="col-10 text-center">
-                            <span class="pl-1">
-                                Guru Learning‘de daha fazlasını göster
-                            </span>
-                        </div>
-                        <div class="col-2 pl-0">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>                                  
-                    </div>
-                </div>
-            </div>
+            @include('layouts.side-ads')
 
             
             <div class="sticky">
-                <div class="left-bar-body rounded mt-2 mb-1">
+                <div class="left-bar-body rounded mt-2">
 
                 </div>
 
                 <div class="left-bar-footer">
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-lg-3 col-2 mr-lg-0 mr-1 left-foot">
                             <a href="#">
                                 Hakkında
@@ -1343,10 +1301,10 @@
                                 Daha Fazla
                             </a>
                         </div>
-                    </div>
-                    <div class="left-bar-end mt-3 text-center" style="font-size: 12px;">
+                    </div> -->
+                    <div class="left-bar-end text-center" style="font-size: 12px;">
                         <div>
-                            <b style="color: #0a66c2;">Guru</b> 
+                            <b style="color: rgba(104 190 203);">Guru</b> 
                             &bull;
                             <span style="color: rgb(68, 68, 68);">
                                 Tinka © 2021

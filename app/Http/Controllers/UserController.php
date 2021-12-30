@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserIntro;
 use App\Models\UserProfile;
 use App\Models\Post;
 use App\Models\Experience;
@@ -174,7 +175,15 @@ class UserController extends Controller
 
         $education = Education::where('user_id', Auth::user()->id)->orderByDesc('start_date')->get();
 
-        return view('user.profile', compact('profile', 'experience', 'education'));
+        $user_intro = UserIntro::where('user_id', Auth::user()->id)->first();
+
+        if(isset($_GET['upload'])){
+
+            return redirect()->action([UserController::class, 'profile'])->with('success','You have upload profile photo successfully!');
+
+        }
+
+        return view('user.profile', compact('profile', 'experience', 'education', 'user_intro'));
     }
 
     /**
@@ -198,6 +207,62 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+    }
+
+    public function updateImage(Request $request)
+    {
+
+        $request->validate([
+            'uploadProfileImage' => 'required',
+        ]);
+ 
+        $name = time().'.'.request()->uploadProfileImage->getClientOriginalExtension();
+    
+        $request->uploadProfileImage->move(public_path('img/user'), $name);
+
+
+        $user = User::where('id', Auth::user()->id)->first();
+
+        $profile_picture = $user->profile_picture;
+
+        $user->profile_picture = $name;
+
+        $user->save();
+
+        unlink(env('USER_IMAGE_STORAGE').$profile_picture);
+        
+    
+        return response()->json(['success'=>'Successfully uploaded.']);
+        
+    }
+
+    public function updateIntro(Request $request)
+    {
+
+        $request->validate([
+            'nameIntro' => 'required',
+            'headlineIntro' => 'nullable',
+            'industryIntro' => 'nullable',
+            'cityIntro' => 'nullable',
+        ]);
+
+        $user = User::where('id', Auth::user()->id)->first();
+
+        $user->name = $request->nameIntro;
+
+        $user->save();
+
+
+        $user_intro = UserIntro::where('user_id', Auth::user()->id)->first();
+
+        $user_intro->headline = $request->headlineIntro;
+        $user_intro->industry = $request->industryIntro;
+        $user_intro->city = $request->cityIntro;
+
+        $user_intro->save();
+
+        return back()->with("success", "Intro has been updated successfully!");
+
     }
 
     public function updateExperience(Request $request, $id)
