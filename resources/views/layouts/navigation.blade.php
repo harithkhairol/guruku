@@ -6,7 +6,7 @@
 
             <!-- start -->
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light mb-1">
+            <nav class="navbar navbar-expand-lg navbar-light mb-1">
                 <a class="navbar-brand" href="/"><img src="{{ asset('img/guru.png') }}" width="100px" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,23 +23,42 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            User
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">View Profile</a>
-                            <div class="dropdown-divider"></div>
 
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
+                        @if(Auth::check())
 
-                                <a href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();" class="dropdown-item">Sign Out</a>
-                            </form>
-                            </div>
-                        </li>
+                            <li class="nav-item dropdown">
+
+                                
+
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                User
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item disabled" href="#">{{ Auth::user()->name }}</a>
+
+                                
+                                <a class="dropdown-item" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">View Profile</a>
+                                
+                                <div class="dropdown-divider"></div>
+
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <a href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();" class="dropdown-item">Sign Out</a>
+                                </form>
+                                </div>
+                            </li>
+                                
+                        @else
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            </li>
+                            
+                        @endif
 
                     </ul>
                     

@@ -16,9 +16,17 @@
                     <div class="card-img-top d-flex justify-content-center">
                         <div class="first-colon-image rounded-circle d-flex">
 
-                            @if(Auth::user()->profile_picture)
+                            @if(Auth::check())
 
-                                <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
+                                @if(Auth::user()->profile_picture)
+
+                                    <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
+
+                                @else
+
+                                    <img src="{{ asset('img/user2.png') }}" class="first-colon-img rounded-circle" alt="profil-photo">
+
+                                @endif
 
                             @else
 
@@ -31,8 +39,12 @@
                 <div class="card-body">
                     <div class="first-colon-body">
                         <p class=" mb-1">
-                        <a href="#" style="color: rgb(26, 26, 26);">
-                                <b>{{ Auth::user()->name }}</b>
+                            <a href="#" style="color: rgb(26, 26, 26);">
+                                @if(Auth::check())
+                                    <b>{{ Auth::user()->name }}</b>
+                                @else
+                                    <b>Guest</b>
+                                @endif
                             </a>    
                         </p>
                         <p class="job-text">
@@ -41,42 +53,32 @@
                     </div>
 
                     <div class="d-none d-md-block">
-                        <!-- <div class="second-colon-body">
-                            <div class="viewing d-flex">
-                                <p class="viewing-text">
-                                    Connection
-                                </p>
-                                <a class="viewing-link ml-auto" href="#">
-                                    6849
-                                </a>
-                            </div>
-                        </div> -->
-                        <div class="third-colon-body d-none">
-                            <p style="color: rgb(102, 101, 101);">
-                                Özel araç ve içgörülere erişin
-                            </p>
-                            <p>
-                                <i class="fas fa-square"></i>
-                                <b>
-                                    Premium’u 1 Ay Ücretsiz Deneyin
-                                </b>
-                            </p>
-                        </div>
+           
                         <div class="card-footer">
 
-                            <a class="mb-2" style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
-                                <i class="fas fa-user mr-2"></i>
-                                <span>
-                                    <b>Edit Profile</b>
-                                </span>
-                            </a>
+                            @if(Auth::check())
+                                <a class="mb-2" style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                                    <i class="fas fa-user mr-2"></i>
+                                    <span>
+                                        <b>Edit Profile</b>
+                                    </span>
+                                </a>
+                                <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile.post', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                                    <i class="fas fa-bookmark mr-2"></i>
+                                    <span>
+                                        <b>My Posts</b>
+                                    </span>
+                                </a>
+                            @else
 
-                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile.post', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
-                                <i class="fas fa-bookmark mr-2"></i>
-                                <span>
-                                    <b>My Posts</b>
-                                </span>
-                            </a>
+                                <a class="text-center" style="display: block; color: rgb(102, 101, 101);" href="#">
+                                
+                                    <span>
+                                        <b>Welcome to guru!</b>
+                                    </span>
+                                </a>
+                            
+                            @endif
 
                         </div>
                     </div>
@@ -89,12 +91,31 @@
             <div class="acordion d-block d-md-none mt-2">
                 <div class="card mb-2">
                     <div class="card-footer">
-                        <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
-                            <i class="fas fa-user mr-2"></i>
-                            <span>
-                                <b>Edit Profile</b>
-                            </span>
-                        </a>
+
+                        @if(Auth::check())
+                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>
+                                    <b>Edit Profile</b>
+                                </span>
+                            </a>
+                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile.post', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                                <i class="fas fa-bookmark mr-2"></i>
+                                <span>
+                                    <b>My Posts</b>
+                                </span>
+                            </a>
+                        @else
+
+                            <a class="text-center" style="display: block; color: rgb(102, 101, 101);" href="#">
+
+                                <span>
+                                    <b>Welcome to guru!</b>
+                                </span>
+                            </a>
+
+                        @endif
+                        
                     </div>
                 </div>
             </div>
@@ -104,42 +125,56 @@
         <!-- second-colon -->
         <div class="col-lg-6 col-md-8 col-sm-12">
             <div class="second-bar mr-0 mr-lg-3">
-                <div class="card">
-                <div class="second-bar-top rounded" style="background-color: white;">
-                    <div class="row pt-3 mr-2 pl-4 pl-sm-0">
-                        <div class="col-2" style="padding-right: 0px !important;">
+                
+                @if(Auth::check())
+                    <div class="card">
+                        <div class="second-bar-top rounded" style="background-color: white;">
+                            <div class="row pt-3 mr-2 pl-4 pl-sm-0">
+                                <div class="col-2" style="padding-right: 0px !important;">
 
-                            @if(Auth::user()->profile_picture)
+                                    @if(Auth::check())
 
-                                <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+                                        @if(Auth::user()->profile_picture)
 
-                            @else
+                                            <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
 
-                                <img src="{{ asset('img/user2.png') }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+                                        @else
 
-                            @endif
+                                            <img src="{{ asset('img/user2.png') }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
 
-                        </div>
-                        <div class="col-10 pl-0" >
-                            <button type="button" class="second-bar-top-button" data-toggle="modal" data-target="#aboutPost">Start a post</button>
-                        </div>
-                    </div>
-                    <div class="row ml-md-2 mr-md-2 text-center">
-                        <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postPicture">
-                            <div class="second-bar-top-foot px-sm-1">
-                                <i class="fas fa-image fa-lg mr-2" style="color: #3883ce;"></i>
-                                <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Photo</span>
+                                        @endif
+                                    
+                                    @else
+
+                                        <img src="{{ asset('img/user2.png') }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+
+                                    @endif
+
+                                </div>
+                                <div class="col-10 pl-0" >
+                                    <button type="button" class="second-bar-top-button" data-toggle="modal" data-target="#aboutPost">Start a post</button>
+                                </div>
+                            </div>
+
+                            
+                            <div class="row ml-md-2 mr-md-2 text-center">
+                                <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postPicture">
+                                    <div class="second-bar-top-foot px-sm-1">
+                                        <i class="fas fa-image fa-lg mr-2" style="color: #3883ce;"></i>
+                                        <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Photo</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postVideo">
+                                    <div class="second-bar-top-foot px-sm-1">
+                                        <i class="fab fa-youtube fa-lg mr-2" style="color: rgb(107, 175, 107);"></i>
+                                        <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Video</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postVideo">
-                            <div class="second-bar-top-foot px-sm-1">
-                                <i class="fab fa-youtube fa-lg mr-2" style="color: rgb(107, 175, 107);"></i>
-                                <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Video</span>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                </div>
+                @endif
+                    
                 <div class="row my-1 ml-auto">
                     <div class="sorting-line d-inline-block position-absolute">
 

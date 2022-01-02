@@ -16,13 +16,21 @@
                     <div class="card-img-top d-flex justify-content-center">
                         <div class="first-colon-image rounded-circle d-flex">
 
-                            @if(Auth::user()->profile_picture)
+                            @if(Auth::check())
 
-                                <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
+                                @if(Auth::user()->profile_picture)
+
+                                    <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
+
+                                @else
+
+                                    <img src="{{ asset('img/user2.png') }}" class="first-colon-img rounded-circle" alt="profil-photo">
+
+                                @endif
 
                             @else
 
-                                <img src="{{ asset('img/user2.png') }}" class="first-colon-img rounded-circle" alt="profil-photo">
+                            <img src="{{ asset('img/user2.png') }}" class="first-colon-img rounded-circle" alt="profil-photo">
 
                             @endif
                         </div>
@@ -31,8 +39,12 @@
                 <div class="card-body">
                     <div class="first-colon-body">
                         <p class=" mb-1">
-                        <a href="#" style="color: rgb(26, 26, 26);">
-                                <b>{{ Auth::user()->name }}</b>
+                            <a href="#" style="color: rgb(26, 26, 26);">
+                                @if(Auth::check())
+                                    <b>{{ Auth::user()->name }}</b>
+                                @else
+                                    <b>Guest</b>
+                                @endif
                             </a>    
                         </p>
                         <p class="job-text">
@@ -41,42 +53,33 @@
                     </div>
 
                     <div class="d-none d-md-block">
-                        <!-- <div class="second-colon-body">
-                            <div class="viewing d-flex">
-                                <p class="viewing-text">
-                                    Connection
-                                </p>
-                                <a class="viewing-link ml-auto" href="#">
-                                    6849
-                                </a>
-                            </div>
-                        </div> -->
-                        <div class="third-colon-body d-none">
-                            <p style="color: rgb(102, 101, 101);">
-                                Özel araç ve içgörülere erişin
-                            </p>
-                            <p>
-                                <i class="fas fa-square"></i>
-                                <b>
-                                    Premium’u 1 Ay Ücretsiz Deneyin
-                                </b>
-                            </p>
-                        </div>
+                       
                         <div class="card-footer">
 
-                            <a class="mb-2" style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
-                                <i class="fas fa-user mr-2"></i>
-                                <span>
-                                    <b>Edit Profile</b>
-                                </span>
-                            </a>
+                            @if(Auth::check())
+                                <a class="mb-2" style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                                    <i class="fas fa-user mr-2"></i>
+                                    <span>
+                                        <b>Edit Profile</b>
+                                    </span>
+                                </a>
+                                <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile.post', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                                    <i class="fas fa-bookmark mr-2"></i>
+                                    <span>
+                                        <b>My Posts</b>
+                                    </span>
+                                </a>
 
-                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile.post', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
-                                <i class="fas fa-bookmark mr-2"></i>
-                                <span>
-                                    <b>My Posts</b>
-                                </span>
-                            </a>
+                            @else
+
+                                <a class="text-center" style="display: block; color: rgb(102, 101, 101);" href="#">
+
+                                    <span>
+                                        <b>Welcome to guru!</b>
+                                    </span>
+                                </a>
+
+                            @endif
 
                         </div>
                     </div>
@@ -89,12 +92,29 @@
             <div class="acordion d-block d-md-none mt-2">
                 <div class="card mb-2">
                     <div class="card-footer">
-                        <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
-                            <i class="fas fa-user mr-2"></i>
-                            <span>
-                                <b>Edit Profile</b>
-                            </span>
-                        </a>
+                        @if(Auth::check())
+                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>
+                                    <b>Edit Profile</b>
+                                </span>
+                            </a>
+                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile.post', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                                <i class="fas fa-bookmark mr-2"></i>
+                                <span>
+                                    <b>My Posts</b>
+                                </span>
+                            </a>
+                        @else
+
+                            <a class="text-center" style="display: block; color: rgb(102, 101, 101);" href="#">
+
+                                <span>
+                                    <b>Welcome to guru!</b>
+                                </span>
+                            </a>
+
+                        @endif
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@
                     <div class="card-img-top d-flex justify-content-center">
                         <div class="first-colon-image rounded-circle d-flex">
 
-                            @if(Auth::user()->profile_picture)
+                            @if($user_picture)
 
                                 <img src="{{ asset('img/user/'.$user_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
 
@@ -63,7 +63,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , $user_name), 'id'=> $user_id] ) }}">
                                 <i class="fas fa-user mr-2"></i>
                                 <span>
                                     <b>View Profile</b>
@@ -80,10 +80,10 @@
             <div class="acordion d-block d-md-none mt-2">
                 <div class="card mb-2">
                     <div class="card-footer">
-                        <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                        <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , $user_name), 'id'=> $user_id] ) }}">
                             <i class="fas fa-user mr-2"></i>
                             <span>
-                                <b>Edit Profile</b>
+                                <b>View Profile</b>
                             </span>
                         </a>
                     </div>
@@ -207,12 +207,19 @@
     <script src="{{ asset('vendor/jquery.form.min.js') }}"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script> -->
 
+    @if(Auth::check())
 
-    @include('modals.post')
-    @include('modals.photo')
-    @include('modals.video')
-    @include('modals.post-edit')
-    @include('modals.post-delete')
+        @if($user_id == Auth::user()->id)
+
+            @include('modals.post')
+            @include('modals.photo')
+            @include('modals.video')
+            @include('modals.post-edit')
+            @include('modals.post-delete')
+
+        @endif
+
+    @endif
 
     <script>
 

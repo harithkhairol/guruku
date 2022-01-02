@@ -134,12 +134,6 @@
 
                                 @endif
 
-                            <!-- @if($user_id == Auth::user()->id)
-
-                            @else
-
-                            @endif -->
-                            
                         </div>
                     </div>
                 </div>

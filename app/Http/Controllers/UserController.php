@@ -17,7 +17,7 @@ class UserController extends Controller
     public function __construct()
     {
 
-        $this->middleware(['auth']);
+        // $this->middleware(['auth']);
 
     }
 
@@ -54,7 +54,7 @@ class UserController extends Controller
 
                 $profile_image = asset('img/user2.png');
 
-                $industry = '<b>Teacher</b>';
+                $headline = '<b>Member</b>';
 
                 if($user->profile_picture){
 
@@ -62,9 +62,9 @@ class UserController extends Controller
 
                 }
 
-                if($user->industry){
+                if($user->intro->headline){
 
-                    $industry = '<b>'.$user->industry.'</b>';
+                    $headline = '<b>'.$user->intro->headline.'</b>';
 
                 }
 
@@ -85,7 +85,7 @@ class UserController extends Controller
                                         '</a>'.
                                         '<small class="d-block" style="margin-top: 1px; color: rgb(102, 101, 101);">'.
 
-                                            $industry.
+                                            $headline.
                                             
                                             
                                         '</small>'.

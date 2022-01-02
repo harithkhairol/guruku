@@ -63,22 +63,26 @@ class PostController extends Controller
 
                 }
 
-                if(Auth::user()->id == $post->user_id){
+                if(Auth::check()){
 
-                    $menu = 
+                    if(Auth::user()->id == $post->user_id){
 
-                    '<div class="col-2 pr-0 pt-1" style="color: rgb(121, 121, 121);">'.
-                        '<i class="fas fa-ellipsis-h float-right p-2 p-xs-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'.
-                        '<div class="ml-auto mr-3 d-inline-block" style="font-size: 12px;">'.
-                            '<div class="dropdown-menu" style="font-size: 12px;" aria-labelledby="dropdownMenuButton">'.
+                        $menu = 
+    
+                        '<div class="col-2 pr-0 pt-1" style="color: rgb(121, 121, 121);">'.
+                            '<i class="fas fa-ellipsis-h float-right p-2 p-xs-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>'.
+                            '<div class="ml-auto mr-3 d-inline-block" style="font-size: 12px;">'.
+                                '<div class="dropdown-menu" style="font-size: 12px;" aria-labelledby="dropdownMenuButton">'.
+                                    
+                                    '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#editPost" data-post="'.$post->post.'" data-picture="'.$post->picture.'" data-video="'.$post->video.'" data-edit="'.$post->id.'">Edit</a>'.
+    
+                                    '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#deletePost" data-post="'.$post->post.'" data-picture="'.$post->picture.'" data-video="'.$post->video.'" data-delete="'.$post->id.'">Delete</a>'.
                                 
-                                '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#editPost" data-post="'.$post->post.'" data-picture="'.$post->picture.'" data-video="'.$post->video.'" data-edit="'.$post->id.'">Edit</a>'.
-
-                                '<a class="dropdown-item" href="#" data-toggle="modal" data-target="#deletePost" data-post="'.$post->post.'" data-picture="'.$post->picture.'" data-video="'.$post->video.'" data-delete="'.$post->id.'">Delete</a>'.
-                            
+                                '</div>'.
                             '</div>'.
-                        '</div>'.
-                    '</div>';
+                        '</div>';
+    
+                    }
 
                 }
 
