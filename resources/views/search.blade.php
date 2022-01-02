@@ -104,63 +104,35 @@
         <!-- second-colon -->
         <div class="col-lg-6 col-md-8 col-sm-12">
             <div class="second-bar mr-0 mr-lg-3">
-                <div class="card">
-                <div class="second-bar-top rounded" style="background-color: white;">
-                    <div class="row pt-3 mr-2 pl-4 pl-sm-0">
-                        <div class="col-2" style="padding-right: 0px !important;">
 
-                            @if(Auth::user()->profile_picture)
+                <div class="card pt-1 pb-2 mb-2">
+                    <div class="card-top">
+                        <div class="row pt-2 mr-2 ml-xs-4 pl-4 pl-sm-0">
+                            <!-- <div class="col-2" style="padding-right: 0px !important;">
+                            </div> -->
+                            <div class="col-12 pl-4" style="font-size: 14px;">
+                                <h6><b>Search for: 
+                                    @if($_GET['result'])
 
-                                <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+                                        {{ $_GET['result']; }}
 
-                            @else
+                                    @else
 
-                                <img src="{{ asset('img/user2.png') }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+                                        All
 
-                            @endif
-
-                        </div>
-                        <div class="col-10 pl-0" >
-                            <button type="button" class="second-bar-top-button" data-toggle="modal" data-target="#aboutPost">Start a post</button>
-                        </div>
-                    </div>
-                    <div class="row ml-md-2 mr-md-2 text-center">
-                        <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postPicture">
-                            <div class="second-bar-top-foot px-sm-1">
-                                <i class="fas fa-image fa-lg mr-2" style="color: #3883ce;"></i>
-                                <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Photo</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postVideo">
-                            <div class="second-bar-top-foot px-sm-1">
-                                <i class="fab fa-youtube fa-lg mr-2" style="color: rgb(107, 175, 107);"></i>
-                                <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Video</span>
+                                    @endif
+    
+                                </b></h6>
                             </div>
                         </div>
                     </div>
-                </div>
-                </div>
-                <div class="row my-1 ml-auto">
-                    <div class="sorting-line d-inline-block position-absolute">
-
-                    </div>
-                    <div class="ml-auto mr-3 d-inline-block" style="font-size: 12px;">
-                        <button class="second-bar-sorting dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sort By: <b style="color: rgb(75, 75, 75);">Recent</b>
-                        </button>
-                        <div class="dropdown-menu" style="font-size: 12px;" aria-labelledby="dropdownMenuButton">
-                            <!-- <a class="dropdown-item" href="#">Top</a> -->
-                            <a class="dropdown-item" href="#">Recent</a>
-                        </div>
-                    </div>
-                        
                 </div>
 
                 <!-- Second-Bar-Post -->
 
                  <!-- start post -->
-                 
-                <div id="results" class="second-bar-post animate-bottom">
+
+                 <div id="results" class="second-bar-post animate-bottom">
 
               
                 </div>
@@ -168,9 +140,6 @@
                 <div class="parent-loading">
                     <div class="ajax-loading" id="loader"></div>
                 </div>
-
-        
-          
 
             </div>
         </div>
@@ -189,54 +158,70 @@
 @section('script')
 
 
-    <script>
+<script>
 
-        var SITEURL = "{{ route('ajax.feed') }}";
+    @if($_GET['result'])
 
-        var page = 1;
 
-        load_more(page);
+        @php
+            $result = $_GET['result'];
+        @endphp
 
-         //  load_more(page); //2nd load
-        $(window).scroll(function() { //detect page scroll
+    @else
 
-            if($(window).scrollTop() + $(window).height() >= $(document).height()) { //if user scrolled from top to bottom of the page
+        @php
+            $result = '-';
+        @endphp
 
-            // if($(window).scrollTop() + $(window).height() >= ($(document).height()-100)) { //if user scrolled from top to bottom of the page
-                page++; //page number increment
-                load_more(page); //load content   
-            }
-            
-        });     
+    @endif
 
-        function load_more(page){
-            $.ajax({
-            url: SITEURL + "?page=" + page,
-            type: "get",
-            datatype: "html",
-            beforeSend: function()
-            {
-                $('.ajax-loading').show();
-                }
-            })
-            .done(function(data)
-            {
-                if(data.length == 0){
-                console.log(data.length);
-                //notify user if nothing to load
-                $('.parent-loading').html("No More Post...");
-                return;
-            }
-            $('.ajax-loading').hide(); //hide loading animation once data is received
-            $("#results").append(data); //append data into #results element          
-            console.log('data.length');
-        })
-        .fail(function(jqXHR, ajaxOptions, thrownError)
-        {
-            alert('No response from server');
-        });
+
+    var SITEURL = "{{ route('ajax.search', ['result' => $result ]) }}";
+
+    var page = 1;
+
+    load_more(page);
+
+    //  load_more(page); //2nd load
+    $(window).scroll(function() { //detect page scroll
+
+        if($(window).scrollTop() + $(window).height() >= $(document).height()) { //if user scrolled from top to bottom of the page
+
+        // if($(window).scrollTop() + $(window).height() >= ($(document).height()-100)) { //if user scrolled from top to bottom of the page
+            page++; //page number increment
+            load_more(page); //load content   
         }
+        
+    });     
 
-    </script>
+    function load_more(page){
+        $.ajax({
+        url: SITEURL + "?page=" + page,
+        type: "get",
+        datatype: "html",
+        beforeSend: function()
+        {
+            $('.ajax-loading').show();
+            }
+        })
+        .done(function(data)
+        {
+            if(data.length == 0){
+            console.log(data.length);
+            //notify user if nothing to load
+            $('.parent-loading').html("No More Guru...");
+            return;
+        }
+        $('.ajax-loading').hide(); //hide loading animation once data is received
+        $("#results").append(data); //append data into #results element          
+        console.log('data.length');
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError)
+    {
+        alert('No response from server');
+    });
+    }
+
+</script>
 
 @endsection

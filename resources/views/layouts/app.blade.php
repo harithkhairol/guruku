@@ -71,11 +71,13 @@
     -->
     
     <!-- js -->
-    <!-- <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script> -->
+     <!-- <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script> -->
+    <!--<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script> -->
 
     <!-- Jquery JS--> 
-    <script src="{{ asset('vendor/jquery-3.2.1.min.js') }}"></script>    
+    <!-- <script src="{{ asset('vendor/jquery-3.2.1.min.js') }}"></script>     -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
     <!-- Bootstrap JS-->
     <script src="{{ asset('vendor/bootstrap-4.1/popper.min.js') }}"></script>

@@ -16,7 +16,7 @@
 
                     <div class="form-group">
                         <label for="nf-email" class=" form-control-label">Name*</label>
-                        <input type="text" id="nameIntro" name="nameIntro" class="form-control" value="{{ Auth::user()->name }}" required>
+                        <input type="text" id="nameIntro" name="nameIntro" class="form-control" value="{{ $user_name }}" required>
                     </div>
 
                     <div class="form-group">

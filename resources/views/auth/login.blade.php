@@ -40,7 +40,7 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="items-center justify-end mt-4">
 
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
@@ -49,11 +49,11 @@
                 @endif
                 
 
-                <x-button class="ml-3">
+                <x-button class="float-right ml-3">
                     {{ __('Log in') }}
                 </x-button>
 
-                <a class="ml-1 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring ring-blue-100 disabled:opacity-25 transition ease-in-out duration-150 ml-3" href="{{ route('register') }}">Register</a>
+                <a class="float-right ml-1 inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring ring-blue-100 disabled:opacity-25 transition ease-in-out duration-150 ml-3" href="{{ route('register') }}">Register</a>
 
             </div>
         </form>

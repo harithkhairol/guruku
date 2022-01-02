@@ -18,7 +18,7 @@
 
                             @if(Auth::user()->profile_picture)
 
-                                <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
+                                <img src="{{ asset('img/user/'.$user_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
 
                             @else
 
@@ -32,7 +32,7 @@
                     <div class="first-colon-body">
                         <p class=" mb-1">
                         <a href="#" style="color: rgb(26, 26, 26);">
-                                <b>{{ Auth::user()->name }}</b>
+                                <b>{{ $user_name }}</b>
                             </a>    
                         </p>
                         <p class="job-text">
@@ -63,21 +63,12 @@
                             </p>
                         </div>
                         <div class="card-footer">
-
-                            <a class="mb-2" style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
+                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
                                 <i class="fas fa-user mr-2"></i>
                                 <span>
-                                    <b>Edit Profile</b>
+                                    <b>View Profile</b>
                                 </span>
                             </a>
-
-                            <a style="display: block; color: rgb(102, 101, 101);" href="{{ route('user.profile.post', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , Auth::user()->name), 'id'=> Auth::user()->id] ) }}">
-                                <i class="fas fa-bookmark mr-2"></i>
-                                <span>
-                                    <b>My Posts</b>
-                                </span>
-                            </a>
-
                         </div>
                     </div>
                 </div>
@@ -104,42 +95,68 @@
         <!-- second-colon -->
         <div class="col-lg-6 col-md-8 col-sm-12">
             <div class="second-bar mr-0 mr-lg-3">
-                <div class="card">
-                <div class="second-bar-top rounded" style="background-color: white;">
-                    <div class="row pt-3 mr-2 pl-4 pl-sm-0">
-                        <div class="col-2" style="padding-right: 0px !important;">
 
-                            @if(Auth::user()->profile_picture)
-
-                                <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
-
-                            @else
-
-                                <img src="{{ asset('img/user2.png') }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
-
-                            @endif
-
-                        </div>
-                        <div class="col-10 pl-0" >
-                            <button type="button" class="second-bar-top-button" data-toggle="modal" data-target="#aboutPost">Start a post</button>
-                        </div>
-                    </div>
-                    <div class="row ml-md-2 mr-md-2 text-center">
-                        <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postPicture">
-                            <div class="second-bar-top-foot px-sm-1">
-                                <i class="fas fa-image fa-lg mr-2" style="color: #3883ce;"></i>
-                                <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Photo</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postVideo">
-                            <div class="second-bar-top-foot px-sm-1">
-                                <i class="fab fa-youtube fa-lg mr-2" style="color: rgb(107, 175, 107);"></i>
-                                <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Video</span>
-                            </div>
+            <div class="card pt-1 pb-2 mb-2">
+                <div class="card-top">
+                    <div class="row pt-2 mr-2 ml-xs-4 pl-4 pl-sm-0">
+                        <!-- <div class="col-2" style="padding-right: 0px !important;">
+                        </div> -->
+                        <div class="col-12 pl-4" style="font-size: 14px;">
+                            <h6><b>{{ $user_name }}'s Post</b></h6>
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
+
+                @if(Auth::check())
+
+                    @if($user_id == Auth::user()->id)
+
+                        <div class="card">
+                            <div class="second-bar-top rounded" style="background-color: white;">
+                                <div class="row pt-3 mr-2 pl-4 pl-sm-0">
+                                    <div class="col-2" style="padding-right: 0px !important;">
+
+                                        @if(Auth::user()->profile_picture)
+
+                                            <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+
+                                        @else
+
+                                            <img src="{{ asset('img/user2.png') }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+
+                                        @endif
+
+                                    </div>
+                                    <div class="col-10 pl-0" >
+                                        <button type="button" class="second-bar-top-button" data-toggle="modal" data-target="#aboutPost">Start a post</button>
+                                    </div>
+                                </div>
+
+                                <div class="row ml-md-2 mr-md-2 text-center">
+                                    <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postPicture">
+                                        <div class="second-bar-top-foot px-sm-1">
+                                            <i class="fas fa-image fa-lg mr-2" style="color: #3883ce;"></i>
+                                            <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Photo</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-6 py-1" data-toggle="modal" data-target="#postVideo">
+                                        <div class="second-bar-top-foot px-sm-1">
+                                            <i class="fab fa-youtube fa-lg mr-2" style="color: rgb(107, 175, 107);"></i>
+                                            <span style="font-weight:bold; font-size: .9rem; color: rgb(133, 133, 133);">Video</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        
+
+                    @endif
+
+                @endif
+
                 <div class="row my-1 ml-auto">
                     <div class="sorting-line d-inline-block position-absolute">
 
@@ -159,8 +176,8 @@
                 <!-- Second-Bar-Post -->
 
                  <!-- start post -->
-                 
-                <div id="results" class="second-bar-post animate-bottom">
+
+                 <div id="results" class="second-bar-post animate-bottom">
 
               
                 </div>
@@ -169,8 +186,7 @@
                     <div class="ajax-loading" id="loader"></div>
                 </div>
 
-        
-          
+                <!-- end post -->
 
             </div>
         </div>
@@ -188,11 +204,20 @@
 
 @section('script')
 
+    <script src="{{ asset('vendor/jquery.form.min.js') }}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script> -->
+
+
+    @include('modals.post')
+    @include('modals.photo')
+    @include('modals.video')
+    @include('modals.post-edit')
+    @include('modals.post-delete')
 
     <script>
 
-        var SITEURL = "{{ route('ajax.feed') }}";
-
+        var SITEURL = "{{ route('ajax.post', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , $user_name), 'id'=> $user_id] ) }}";
+        
         var page = 1;
 
         load_more(page);

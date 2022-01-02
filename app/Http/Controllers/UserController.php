@@ -31,10 +31,84 @@ class UserController extends Controller
         return view('dashboard');
     }
 
-    public function feed()
+    public function searchAjax(Request $request, $result)
     {
 
-        $posts = Post::orderByDesc('created_at')->get();
+        if($result != "-"){
+
+            $users = User::where('name', 'like', '%' . $result . '%')->orderByDesc('created_at')->paginate(18);
+
+        }
+
+        else{
+            $users = User::orderByDesc('created_at')->paginate(18);
+        }
+
+        
+
+        $data = '';
+
+        if ($request->ajax()) {
+
+            foreach ($users as $user) {
+
+                $profile_image = asset('img/user2.png');
+
+                $industry = '<b>Teacher</b>';
+
+                if($user->profile_picture){
+
+                    $profile_image = asset('img/user/'.$user->profile_picture);
+
+                }
+
+                if($user->industry){
+
+                    $industry = '<b>'.$user->industry.'</b>';
+
+                }
+
+                $data.=
+                
+                '<div class="second-bar-post mb-2">'.
+                        '<div class="card">'.
+                            '<div class="card-top">'.
+                                '<div class="row pt-2 mr-2 ml-xs-4 pl-4 pl-sm-0 mb-2">'.
+                                    '<div class="col-2" style="padding-right: 0px !important;">'.
+                                        
+                                        '<img src="'.$profile_image.'" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">'.
+                                        
+                                    '</div>'.
+                                    '<div class="col-8 second-bar-posttop pl-0" style="font-size: 14px;">'.
+                                        '<a href="'.route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , $user->name), 'id'=> $user->id] ) .'" style="color: rgb(61, 60, 60);">'.
+                                            '<b>'. $user->name .'</b>'.
+                                        '</a>'.
+                                        '<small class="d-block" style="margin-top: 1px; color: rgb(102, 101, 101);">'.
+
+                                            $industry.
+                                            
+                                            
+                                        '</small>'.
+                                    '</div>'.
+
+                                '</div>'.
+                            '</div>'.
+
+                        '</div>'.
+                    '</div>';
+
+            }
+
+            return $data;
+        }
+        
+    }
+
+    public function feed(Request $request)
+    {
+
+
+        $posts = Post::orderByDesc('created_at')->paginate(8);
 
         if(isset($_GET['post'])){
 
@@ -42,8 +116,114 @@ class UserController extends Controller
 
         }
 
-        return view('user.feed', compact('posts'));
+        $data = '';
+
+        if ($request->ajax()) {
+
+            foreach ($posts as $post) {
+
+                $profile_image = asset('img/user2.png');
+
+                $image = '';
+                $video = '';
+
+                if($post->user->profile_picture){
+
+                    $profile_image = asset('img/user/'.$post->user->profile_picture);
+
+                }
+
+                if($post->picture){
+
+                    $image = '<img class="card-body-img" style="width: 100%;" src="'.env('APP_URL').'/img/post/'.$post->picture .'" alt="post">';
+
+                }
+
+                if($post->video){
+
+                    $video = 
+                    
+                    '<div class="embed-responsive embed-responsive-4by3">'.
+                        '<iframe class="embed-responsive-item" src="'. env('APP_URL') .'/video/post/'. $post->video .'"></iframe>'.
+                    '</div>';
+
+                }
+
+                $data.= '<div class="second-bar-post mb-2">'.
+                    '<div class="card">'.
+                        '<div class="card-top">'.
+                            '<div class="row pt-2 mr-2 ml-xs-4 pl-4 pl-sm-0">'.
+                                '<div class="col-2" style="padding-right: 0px !important;">'.
+                                    '<img src="'.$profile_image.'" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">'.
+                                '</div>'.
+                                '<div class="col-8 second-bar-posttop pl-0" style="font-size: 14px;">'.
+                                    '<a href="'.route('user.profile', ['name'=>str_replace( [' ','/', '-'] , ['+','=', ','] , $post->user->name), 'id'=> $post->user->id] ).'" style="color: rgb(61, 60, 60);">'.
+                                        '<b>'.$post->user->name.'</b>'.
+                                    '</a>'.
+                                    '<small class="d-block" style="margin-top: 1px; color: rgb(102, 101, 101);">'.
+                                        $post->created_at->diffForHumans().
+                                    '</small>'.
+                                '</div>'.
+                                
+                            '</div>'.
+                        '</div>'.
+
+                        '<div class="card-body">'.
+                            '<p class="card-body-text">'.$post->post.'</p>'.
+
+                                $image.
+
+                                $video.
+
+                        '</div>'.
+                    '</div>'.
+                '</div>';
+
+            }
+
+            return $data;
+        }
+
+        return view('user.feed');
         
+    }
+
+    public function search(){
+
+        $users = User::where('name', 'like', '%' . $_GET['result'] . '%')->orderByDesc('created_at')->get();
+
+        return view('search', compact('users'));
+        
+    }
+
+    public function showPost(Request $request, $name, $id)
+    {
+
+        $user = User::findOrFail($id);
+
+        $check_name = str_replace( ['+','=', ','] , [' ','/', '-'] , $name);
+
+        if($check_name != $user->name){
+
+            return redirect()->action([UserController::class, 'feed'])->with("error", "No user found!");
+
+        }
+
+        $user_id = $user->id;
+
+        $user_name = $user->name;
+
+        $user_picture = $user->profile_picture;
+
+        $posts = Post::where('user_id', $id)->orderByDesc('created_at')->get();
+        
+        if(isset($_GET['post'])){
+
+            return redirect()->action([UserController::class, 'showPost'], [$name, $id])->with('success','You have created a post successfully!');
+
+        }
+
+        return view('user.post', compact('posts', 'user_name', 'user_picture', 'user_id'));
     }
 
     /**
@@ -166,16 +346,44 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function profile(User $user)
+    public function profile(Request $request, $name, $id)
     {
 
-        $profile = UserProfile::where('user_id', Auth::user()->id)->first();
+        // $profile = UserProfile::where('user_id', Auth::user()->id)->first();
 
-        $experience = Experience::where('user_id', Auth::user()->id)->orderByDesc('start_date')->get();
+        // $experience = Experience::where('user_id', Auth::user()->id)->orderByDesc('start_date')->get();
 
-        $education = Education::where('user_id', Auth::user()->id)->orderByDesc('start_date')->get();
+        // $education = Education::where('user_id', Auth::user()->id)->orderByDesc('start_date')->get();
 
-        $user_intro = UserIntro::where('user_id', Auth::user()->id)->first();
+        // $user_intro = UserIntro::where('user_id', Auth::user()->id)->first();
+        
+        // str_replace( [' ','/', '-'] , ['+','=', ','] , $name)
+
+        $user = User::findOrFail($id);
+
+        $check_name = str_replace( ['+','=', ','] , [' ','/', '-'] , $name);
+
+        if($check_name != $user->name){
+
+            return redirect()->action([UserController::class, 'feed'])->with("error", "No user found!");
+
+        }
+
+        $user_id = $id;
+
+        $user_name = $user->name;
+
+        $user_picture = $user->profile_picture;
+
+        $user_email = $user->email;
+
+        $profile = UserProfile::where('user_id', $id)->first();
+
+        $experience = Experience::where('user_id', $id)->orderByDesc('start_date')->get();
+
+        $education = Education::where('user_id', $id)->orderByDesc('start_date')->get();
+
+        $user_intro = UserIntro::where('user_id', $id)->first();
 
         if(isset($_GET['upload'])){
 
@@ -183,30 +391,7 @@ class UserController extends Controller
 
         }
 
-        return view('user.profile', compact('profile', 'experience', 'education', 'user_intro'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
+        return view('user.profile', compact('profile', 'experience', 'education', 'user_intro', 'user_name', 'user_picture', 'user_email', 'user_id'));
     }
 
     public function updateImage(Request $request)
@@ -220,8 +405,7 @@ class UserController extends Controller
     
         $request->uploadProfileImage->move(public_path('img/user'), $name);
 
-
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->firstOrFail();
 
         $profile_picture = $user->profile_picture;
 
@@ -246,7 +430,7 @@ class UserController extends Controller
             'cityIntro' => 'nullable',
         ]);
 
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->firstOrFail();
 
         $user->name = $request->nameIntro;
 

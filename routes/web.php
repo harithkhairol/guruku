@@ -19,9 +19,21 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/posts', [PostController::class, 'ajaxFeed'])->name('ajax.feed');
+
+Route::get('/posts/{name}-{id}', [PostController::class, 'ajaxPost'])->name('ajax.post');
+
 Route::get('/feed', [UserController::class, 'feed'])->name('user.feed');
 
-Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+Route::get('/search', [UserController::class, 'search'])->name('search');
+
+Route::get('/searches/{result}', [UserController::class, 'searchAjax'])->name('ajax.search');
+
+Route::get('/profile/{name}-{id}', [UserController::class, 'profile'])->name('user.profile');
+
+Route::get('/profile/{name}-{id}/post', [UserController::class, 'showPost'])->name('user.profile.post');
+
+// Route::get('/travel/{title}-{property_id}/', [PostController::class, 'test'])->name('travel.view');
 
 Route::post('/about/update', [UserController::class, 'updateAbout'])->name('user.about.update');
 

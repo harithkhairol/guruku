@@ -62,6 +62,8 @@
     $(function () {
         $(document).ready(function () {
 
+            var url = window.location.href;    
+
             $('#formPostPhoto').ajaxForm({
 
                 beforeSend: function () {
@@ -75,8 +77,9 @@
                     })
                 },
                 complete: function (xhr) {
+
                     console.log('File has uploaded');
-                    window.location.href = "/feed?post=success";
+                    window.location.href = url+"?post=success";
                 }
             });
 
