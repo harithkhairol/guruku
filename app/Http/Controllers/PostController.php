@@ -49,7 +49,7 @@ class PostController extends Controller
 
                 if($post->picture){
 
-                    $image = '<img class="card-body-img" style="width: 100%;" src="'.env('APP_URL').'/img/post/'.$post->picture .'" alt="post">';
+                    $image = '<img class="card-body-img" style="width: 100%;" src="'.env('APP_URL').'/storage/img/post/'.$post->picture .'" alt="post">';
 
                 }
 
@@ -58,7 +58,7 @@ class PostController extends Controller
                     $video = 
                     
                     '<div class="embed-responsive embed-responsive-4by3">'.
-                        '<iframe class="embed-responsive-item" src="'. env('APP_URL') .'/video/post/'. $post->video .'"></iframe>'.
+                        '<iframe class="embed-responsive-item" src="'. env('APP_URL') .'/storage/video/post/'. $post->video .'"></iframe>'.
                     '</div>';
 
                 }
@@ -149,7 +149,7 @@ class PostController extends Controller
 
                 if($post->picture){
 
-                    $image = '<img class="card-body-img" style="width: 100%;" src="'.env('APP_URL').'/img/post/'.$post->picture .'" alt="post">';
+                    $image = '<img class="card-body-img" style="width: 100%;" src="'.env('APP_URL').'/storage/img/post/'.$post->picture .'" alt="post">';
 
                 }
 
@@ -158,7 +158,7 @@ class PostController extends Controller
                     $video = 
                     
                     '<div class="embed-responsive embed-responsive-4by3">'.
-                        '<iframe class="embed-responsive-item" src="'. env('APP_URL') .'/video/post/'. $post->video .'"></iframe>'.
+                        '<iframe class="embed-responsive-item" src="'. env('APP_URL') .'/storage/video/post/'. $post->video .'"></iframe>'.
                     '</div>';
 
                 }
@@ -250,10 +250,12 @@ class PostController extends Controller
             'uploadImage' => 'required',
             'post' => 'required',
         ]);
- 
-        $name = time().'.'.request()->uploadImage->getClientOriginalExtension();
-    
-        $request->uploadImage->move(public_path('img/post'), $name);
+
+        $file = $request->file('uploadImage');
+
+        $name = time() . '.' . $file->getClientOriginalExtension();
+
+        $path = $file->storeAs('public/img/post', $name);
 
         $post = new Post;
 
@@ -274,11 +276,17 @@ class PostController extends Controller
             'uploadVideo' => 'required',
             'post' => 'required',
         ]);
- 
-        $name = time().'.'.request()->uploadVideo->getClientOriginalExtension();
-    
-        $request->uploadVideo->move(public_path('video/post'), $name);
 
+        // start
+
+        $file = $request->file('uploadVideo');
+
+        $name = time() . '.' . $file->getClientOriginalExtension();
+
+        $path = $file->storeAs('public/video/post', $name);
+
+        // end
+            
         $post = new Post;
 
         $post->user_id = Auth::user()->id;
@@ -356,9 +364,11 @@ class PostController extends Controller
 
         if(!empty($request->updateUploadImage)){
 
-            $image_name = time().'.'.request()->updateUploadImage->getClientOriginalExtension();
-    
-            $request->updateUploadImage->move(public_path('img/post'), $image_name);
+            $file_image = $request->file('updateUploadImage');
+
+            $image_name = time() . '.' . $file_image->getClientOriginalExtension();
+
+            $path = $file_image->storeAs('public/img/post', $image_name);
 
             $post->picture = $image_name;
 
@@ -366,9 +376,11 @@ class PostController extends Controller
         
         elseif(!empty($request->updateUploadVideo)){
 
-            $video_name = time().'.'.request()->updateUploadVideo->getClientOriginalExtension();
-    
-            $request->updateUploadVideo->move(public_path('video/post'), $video_name);
+            $file_video = $request->file('updateUploadVideo');
+
+            $video_name = time() . '.' . $file_video->getClientOriginalExtension();
+
+            $path = $file_video->storeAs('public/video/post', $video_name);
 
             $post->video = $video_name;
 

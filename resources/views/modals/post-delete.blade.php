@@ -67,7 +67,7 @@
         else{
 
             $('#divPostPictureDelete').show();
-            $('#postPictureDelete').attr('src', "/img/post/"+ post_picture);
+            $('#postPictureDelete').attr('src', "/storage/img/post/"+ post_picture);
 
         }
 
@@ -80,7 +80,7 @@
         else{
 
             $('#divPostVideoDelete').show();
-            $('#postVideoDelete').attr('src', "/video/post/"+ post_video);
+            $('#postVideoDelete').attr('src', "/storage/video/post/"+ post_video);
 
         }
 

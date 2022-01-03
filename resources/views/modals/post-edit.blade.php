@@ -96,18 +96,23 @@
                 
             $('#updateUploadImageDiv').show();
             $('#updateUploadVideoDiv').hide();
+            $('#updateUploadVideo').val("");
 
         }
         else if(document.getElementById('radioVideo').checked) {
 
             $('#updateUploadImageDiv').hide();
             $('#updateUploadVideoDiv').show();
+            $('#updateUploadImage').val("");
+            
         }
 
         else{
 
             $('#updateUploadImageDiv').hide();
             $('#updateUploadVideoDiv').hide();
+            $('#updateUploadVideo').val("");
+            $('#updateUploadImage').val("");
 
         }
         
@@ -147,7 +152,7 @@
         else{
 
             $('#divPostPictureUpdate').show();
-            $('#postPictureUpdate').attr('src', "/img/post/"+ post_picture);
+            $('#postPictureUpdate').attr('src', "/storage/img/post/"+ post_picture);
 
         }
 
@@ -160,7 +165,7 @@
         else{
 
             $('#divPostVideoUpdate').show();
-            $('#postVideoUpdate').attr('src', "/video/post/"+ post_video);
+            $('#postVideoUpdate').attr('src', "/storage/video/post/"+ post_video);
 
         }
 
