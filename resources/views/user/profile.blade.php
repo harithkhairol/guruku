@@ -26,6 +26,8 @@
                                                             
 </style>
 
+{{ public_path('img/user') }}
+
 
     <div class="row d-flex justify-content-between mt-4">
 
