@@ -9,7 +9,7 @@
                 </button>
             </div>
 
-            <form id="formIntro" action="" method="POST">
+            <form id="formIntro" action="{{ route('user.intro.update') }}" method="POST">
                 @csrf
 
                 <div class="modal-body">
@@ -48,14 +48,3 @@
         </div>
     </div>
 </div>
-
-<script>
-
-
-    $('#btnUpdateIntro').click(function(){
-    
-        $('#formIntro').attr("action", '/intro/update/');
-
-    });
-
-</script>
