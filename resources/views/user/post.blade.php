@@ -18,7 +18,7 @@
 
                             @if($user_picture)
 
-                                <img src="{{ asset('img/user/'.$user_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
+                                <img src="{{ asset('storage/img/user/'.$user_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
 
                             @else
 
@@ -119,7 +119,7 @@
 
                                         @if(Auth::user()->profile_picture)
 
-                                            <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
+                                            <img src="{{ asset('storage/img/user/'.Auth::user()->profile_picture) }}" class="second-bar-top-img rounded-circle float-right mr-2" alt="profil-photo">
 
                                         @else
 

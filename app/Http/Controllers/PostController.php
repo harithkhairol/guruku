@@ -43,7 +43,7 @@ class PostController extends Controller
 
                 if($post->user->profile_picture){
 
-                    $profile_image = asset('img/user/'.$post->user->profile_picture);
+                    $profile_image = asset('storage/img/user/'.$post->user->profile_picture);
 
                 }
 
@@ -143,7 +143,7 @@ class PostController extends Controller
 
                 if($post->user->profile_picture){
 
-                    $profile_image = asset('img/user/'.$post->user->profile_picture);
+                    $profile_image = asset('storage/img/user/'.$post->user->profile_picture);
 
                 }
 

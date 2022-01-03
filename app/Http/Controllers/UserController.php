@@ -58,7 +58,7 @@ class UserController extends Controller
 
                 if($user->profile_picture){
 
-                    $profile_image = asset('img/user/'.$user->profile_picture);
+                    $profile_image = asset('storage/img/user/'.$user->profile_picture);
 
                 }
 
@@ -129,7 +129,7 @@ class UserController extends Controller
 
                 if($post->user->profile_picture){
 
-                    $profile_image = asset('img/user/'.$post->user->profile_picture);
+                    $profile_image = asset('storage/img/user/'.$post->user->profile_picture);
 
                 }
 
@@ -401,25 +401,12 @@ class UserController extends Controller
             'uploadProfileImage' => 'required',
         ]);
 
-        // $name = time().'.'.request()->uploadProfileImage->getClientOriginalExtension();
-
-        // $name = time().'.'.$request->uploadProfileImage->extension();  
-
-        // $imageName = time().'.'.$request->image->extension();  
-
-    
-        // $request->uploadProfileImage->move(public_path('img/user'), $name);
-
-        // $request->uploadProfileImage->store($name);
-
-        // $request->uploadProfileImage->storeAs('images', $name);
-
         $file = $request->file('uploadProfileImage');
 
-            // generate a new filename. getClientOriginalExtension() for the file extension
+        // generate a new filename. getClientOriginalExtension() for the file extension
         $name = time() . '.' . $file->getClientOriginalExtension();
 
-        // save to storage/app/photos as the new $filename
+        // save to storage/app/public/img/user as the new $filename
         $path = $file->storeAs('public/img/user', $name);
 
         $user = User::where('id', Auth::user()->id)->firstOrFail();
