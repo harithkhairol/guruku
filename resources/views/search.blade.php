@@ -20,7 +20,7 @@
 
                                 @if(Auth::user()->profile_picture)
 
-                                    <img src="{{ asset('img/user/'.Auth::user()->profile_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
+                                    <img src="{{ asset('storage/img/user/'.Auth::user()->profile_picture) }}" class="first-colon-img rounded-circle" alt="profil-photo">
 
                                 @else
 
