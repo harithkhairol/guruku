@@ -261,7 +261,7 @@
         else{
 
             $('#formEditExperience').attr("action", '/experience/'+ experience_delete +'/delete');
-            // $('#formEditExperience').attr("method", "post");
+            $('#formEditExperience').attr("method", "post");
             
         }
 
