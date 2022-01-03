@@ -7,9 +7,9 @@
         </div>
         <div class="left-bar-bottom row mx-2 pl-2 pr-1" style="color: rgb(153, 152, 152); font-size: 15px;">
             <div class="col-10 text-center">
-                <span class="pl-1">
+                <a href="https://campus.tinka.world/" target="_blank" style="display: block; color: rgb(153, 152, 152);" class="pl-1">
                     Join Tinka Now!
-                </span>
+                </a>
             </div>
             <div class="col-2 pl-0">
                 <i class="fas fa-arrow-right"></i>
