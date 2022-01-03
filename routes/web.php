@@ -23,7 +23,7 @@ Route::get('/posts', [PostController::class, 'ajaxFeed'])->name('ajax.feed');
 
 Route::get('/posts/{name}-{id}', [PostController::class, 'ajaxPost'])->name('ajax.post');
 
-Route::get('/', [UserController::class, 'feed'])->name('user.feed');
+Route::get('/', [UserController::class, 'feed'])->name('home');
 
 Route::get('/feed', [UserController::class, 'feed'])->name('user.feed');
 
