@@ -162,9 +162,13 @@
                             @endif
                             
                         </h6>
-                        
-                        <h7>{{ $user_intro->headline }}</h7>
 
+                        @if($user_intro->headline)
+
+                            <h7>{{ $user_intro->headline }}</h7>
+
+                        @endif
+                        
                         <div class="profile-intro pt-2 pb-3">
 
                             <span class="text-gray">
