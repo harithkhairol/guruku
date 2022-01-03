@@ -260,8 +260,9 @@
 
         else{
 
-            $('#formEditExperience').attr("action", '/experience/'+ experience_delete +'/delete/');
-
+            $('#formEditExperience').attr("action", '/experience/'+ experience_delete +'/delete');
+            // $('#formEditExperience').attr("method", "post");
+            
         }
 
     });
