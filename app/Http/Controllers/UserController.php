@@ -400,10 +400,27 @@ class UserController extends Controller
         $request->validate([
             'uploadProfileImage' => 'required',
         ]);
- 
-        $name = time().'.'.request()->uploadProfileImage->getClientOriginalExtension();
+
+        // $name = time().'.'.request()->uploadProfileImage->getClientOriginalExtension();
+
+        // $name = time().'.'.$request->uploadProfileImage->extension();  
+
+        // $imageName = time().'.'.$request->image->extension();  
+
     
-        $request->uploadProfileImage->move(public_path('img/user'), $name);
+        // $request->uploadProfileImage->move(public_path('img/user'), $name);
+
+        // $request->uploadProfileImage->store($name);
+
+        // $request->uploadProfileImage->storeAs('images', $name);
+
+        $file = $request->file('uploadProfileImage');
+
+            // generate a new filename. getClientOriginalExtension() for the file extension
+        $name = time() . '.' . $file->getClientOriginalExtension();
+
+        // save to storage/app/photos as the new $filename
+        $path = $file->storeAs('public/img/user', $name);
 
         $user = User::where('id', Auth::user()->id)->firstOrFail();
 
