@@ -30,14 +30,3 @@
         </div>
     </div>
 </div>
-
-<script>
-
-
-    $('#btnUpdateAbout').click(function(){
-    
-        $('#formAbout').attr("action", '/about/update/');
-
-    });
-
-</script>
