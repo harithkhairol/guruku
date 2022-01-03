@@ -196,7 +196,8 @@
 
         let education_edit = $("#btnEditEducation").val();
     
-        $('#formEditEducation').attr("action", '/education/'+ education_edit +'/update/');
+        $('#formEditEducation').attr("action", '/education/'+ education_edit +'/update');
+        $('#formEditEducation').attr("method", "post");
 
     });
 
@@ -214,7 +215,8 @@
 
         else{
 
-            $('#formEditEducation').attr("action", '/education/'+ education_delete +'/delete/');
+            $('#formEditEducation').attr("action", '/education/'+ education_delete +'/delete');
+            $('#formEditEducation').attr("method", "post");
 
         }
 

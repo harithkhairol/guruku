@@ -9,7 +9,7 @@
                 </button>
             </div>
 
-            <form id="formEducation" action="" method="POST">
+            <form id="formEducation" action="{{ route('user.education.store') }}" method="POST">
                 @csrf
                 
                 <div class="modal-body">
@@ -136,25 +136,3 @@
         </div>
     </div>
 </div>
-
-<script>
-
-    $('#educationModal').on('show.bs.modal', function (event) {
-        
-        let descAbout = $(event.relatedTarget).data('desc');
-        let titleExperience = $(event.relatedTarget).data('title');
-        
-        $('#titleExperience').text(titleExperience);
-        $('#textAbout').text('Description');
-
-    });
-
-
-    $('#btnCreateEducation').click(function(){
-    
-        $('#formEducation').attr("action", '/education/store/');
-
-    });
-
-
-</script>
