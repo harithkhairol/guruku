@@ -243,6 +243,7 @@
         let experience_edit = $("#btnEditExperience").val();
     
         $('#formEditExperience').attr("action", '/experience/'+ experience_edit +'/update/');
+        $('#formEditExperience').attr("method", "post");
 
     });
 
