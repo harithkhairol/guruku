@@ -59,6 +59,8 @@
     $(function () {
         $(document).ready(function () {
 
+            var url_user_photo = window.location.href;
+
             $('#formProfilePhoto').ajaxForm({
 
                 beforeSend: function () {
@@ -73,7 +75,7 @@
                 },
                 complete: function (xhr) {
                     console.log('File has uploaded');
-                    window.location.href = "/profile?upload=success";
+                    window.location.href = url_user_photo+"?upload=success";
                 }
             });
 

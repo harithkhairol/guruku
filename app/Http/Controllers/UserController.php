@@ -387,7 +387,7 @@ class UserController extends Controller
 
         if(isset($_GET['upload'])){
 
-            return redirect()->action([UserController::class, 'profile'])->with('success','You have upload profile photo successfully!');
+            return redirect()->action([UserController::class, 'profile'], [$name, $id])->with('success','You have upload profile photo successfully!');
 
         }
 
