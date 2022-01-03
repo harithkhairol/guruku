@@ -163,7 +163,7 @@
                             
                         </h6>
 
-                        @if($user_intro->headline)
+                        @if(isset($user_intro->headline))
 
                             <h7>{{ $user_intro->headline }}</h7>
 
