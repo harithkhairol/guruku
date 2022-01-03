@@ -83,7 +83,7 @@
                                 <!-- <label for="x_card_code" class="control-label mb-1">Security code</label> -->
                                 <div class="form-group">
                                     <select class="form-control" id="editYearExperience" name="editYearExperience">
-                                        <option selected disabled>Year</option>
+                                        <option value="" selected disabled>Year</option>
 
                                             @foreach (range(date('Y'), date('Y')  - 100) as $year)
                                                 <option value="{{ $year }}">{{ $year }}</option>
@@ -101,7 +101,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <select class="form-control" id="editEndMonthExperience" name="editEndMonthExperience">
-                                        <option selected disabled>Month</option>
+                                        <option value="" selected disabled>Month</option>
                                         <option value="1">January</option>
                                         <option value="2">February</option>
                                         <option value="3">March</option>
@@ -206,6 +206,10 @@
 
             $("#editEndYearExperience").prop('disabled', true);
 
+            $('#editEndMonthExperience').prop('required',false);
+
+            $('#editEndYearExperience').prop('required',false);
+
         }
 
         else{
@@ -215,6 +219,10 @@
             $("#editEndMonthExperience").prop('disabled', false);
 
             $("#editEndYearExperience").prop('disabled', false);
+
+            $('#editEndMonthExperience').prop('required',true);
+
+            $('#editEndYearExperience').prop('required',true);
 
             $('#editEndMonthExperience').val(parseInt(editEndMonthExperience));
 
@@ -265,6 +273,10 @@
         $("#editEndMonthExperience").prop('disabled', function (_, val) { return ! val; });
 
         $("#editEndYearExperience").prop('disabled', function (_, val) { return ! val; });
+
+        $("#editEndMonthExperience").prop('required', function (_, val) { return ! val; });
+
+        $("#editEndYearExperience").prop('required', function (_, val) { return ! val; });
 
     }
 

@@ -493,7 +493,9 @@ class UserController extends Controller
 
         }
 
-        elseif(isset($request->editEndYearExperience)){
+        // elseif(isset($request->editEndYearExperience)){
+
+        else{
 
             $end_date = $request->editEndYearExperience.'-'.$request->editEndMonthExperience.'-01';
             $experience->end_date = $end_date;

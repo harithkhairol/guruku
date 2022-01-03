@@ -1,4 +1,4 @@
-<!-- delete property photo modal -->
+<!-- intro modal -->
 <div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
