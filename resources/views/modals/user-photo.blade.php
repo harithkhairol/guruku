@@ -44,7 +44,7 @@
 
 <script>
 
-    $("#uploadImage").change(function(){
+    $("#uploadProfileImage").change(function(){
 
         $('#preview').html("");
         $('#preview').append('<img width="537px" src="'+URL.createObjectURL(event.target.files[0])+'">');

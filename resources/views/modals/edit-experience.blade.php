@@ -37,8 +37,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="nf-email" class=" form-control-label">Company name*</label>
-                        <input type="text" id="editCompanyExperience" name="editCompanyExperience" placeholder="Enter Company Name.." class="form-control">
+                        <label for="nf-email" class=" form-control-label">School name*</label>
+                        <input type="text" id="editCompanyExperience" name="editCompanyExperience" placeholder="Enter School Name.." class="form-control">
                         <!-- <span class="help-block">Please enter your email</span> -->
                     </div>
 
